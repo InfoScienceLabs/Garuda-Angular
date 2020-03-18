@@ -1,0 +1,13 @@
+@import '../../../scss/table.scss';
+@import '../../../scss/marketplace.scss';
+.example-card {
+    max-width: 400px;
+    height: auto;
+}
+
+.delist {
+    position: absolute;
+    top: 90%;
+    bottom: 0px;
+    right: 14px;
+}

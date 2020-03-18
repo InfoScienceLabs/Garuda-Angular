@@ -1,0 +1,25 @@
+@import '../../../../scss/certificate.scss';
+.main {
+    width: 100% !important;
+    background-image: url('../../../../assets/certificate.svg');
+}
+
+.revoked:after {
+    background-image: url('../../../../assets/images/expired.png');
+}
+
+// .main {
+//     width: 800px;
+//     height: 600px;
+//     outline: 20px solid #4979bc;
+//     border: 5px solid #e2e5f4;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     font-family: 'Montserrat', sans-serif;
+//     background: #f0f9ff;
+//     background: -moz-linear-gradient(top, #f0f9ff 0%, #cbebff 100%, #a1dbff 100%);
+//     background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 100%, #a1dbff 100%);
+//     background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 100%, #a1dbff 100%);
+// }

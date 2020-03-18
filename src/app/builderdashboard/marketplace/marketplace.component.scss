@@ -1,0 +1,68 @@
+.example-small-box,
+.example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.example-small-box {
+    height: 100px;
+    width: 100px;
+}
+
+.example-large-box {
+    height: 300px;
+    width: 300px;
+}
+
+.card .card-image {
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s !important;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #797bbd;
+    line-height: 52px;
+    padding: 15px 0 5px 0;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    -webkit-transform: translateX(-50%) translateY(-15%);
+    transform: translateX(-50%) translateY(-15%);
+    display: inline-block;
+    left: 50%;
+    border-bottom: 1px solid #6473826e;
+}
+
+.new {
+    display: inline-block;
+    color: #fff;
+    border-radius: 2px;
+    bottom: 12px !important;
+    left: 12px !important;
+    font-size: 12px;
+    border-radius: 30px;
+    background: #4064d7;
+    padding: 7px 18px !important;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    line-height: 15px;
+    vertical-align: top;
+}
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+

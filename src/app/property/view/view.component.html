@@ -1,0 +1,81 @@
+<div class="display-block">
+    <div class="docs-example-viewer-wrapper">
+        <div class="docs-example-viewer-title" fxFlexAlign="baseline">
+            <div class="docs-example-viewer-title-spacer">Filters</div>
+
+        </div>
+        <div class="docs-example-viewer-body">
+            <form>
+                <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px">
+                    <div>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="	Property Name" />
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="	Owner" />
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="	Owner Type" />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlexAlign="center">
+                        <button mat-raised-button type="submit">
+                            <mat-icon>filter_list</mat-icon> Filter
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="docs-example-viewer-wrapper table-margintop ">
+    <div class="docs-example-viewer-title" fxFlexAlign="baseline">
+        <div class="docs-example-viewer-title-spacer">
+            View</div>
+    </div>
+    <div>
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="propertyImg">
+                <th mat-header-cell *matHeaderCellDef> Property Image </th>
+                <td mat-cell *matCellDef="let property">
+
+                    <img src="./../../../assets/images/avatars/thumbimg.jpg" width="50">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ID">
+                <th mat-header-cell *matHeaderCellDef> Property Id </th>
+                <td mat-cell *matCellDef="let property"> {{property.propertyId}} </td>
+            </ng-container>
+            <ng-container matColumnDef="propertyName">
+                <th mat-header-cell *matHeaderCellDef> Property Name </th>
+                <td mat-cell *matCellDef="let property"> {{property.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef> Location </th>
+                <td mat-cell *matCellDef="let property"> {{property.location}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Value">
+                <th mat-header-cell *matHeaderCellDef> Property Value</th>
+                <td mat-cell *matCellDef="let property"> {{property.value}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row [routerLink]="['./',row.propertyId]" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <!-- <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator> -->
+        <mat-paginator [length]="pageIndex" 
+
+        [pageSize]="10" 
+
+        [pageSizeOptions]="[pageSize]"
+
+        (page)="pageEvent = getProperty($event)">
+
+      </mat-paginator>
+    </div>
+</div>

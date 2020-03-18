@@ -1,0 +1,46 @@
+<div class="toolbar-notification-container">
+    <button mat-icon-button (click)="toggleDropdown()" [ngClass]="[cssPrefix+'-btn']" [class.open]="isOpen">
+  <mat-icon class="c-w">notifications_none</mat-icon>
+  <span  class="badge-ntf" *ngIf="notifications.length > 0">{{ notifications?.length }}</span>
+</button>
+
+    <div class="dropdown mat-elevation-z1" [class.open]="isOpen">
+        <div class="card">
+            <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">
+                    <div class="name">Notifications</div>
+                    <div class="extra">{{ notifications?.length }} Notifications</div>
+                </div>
+
+            </div>
+            <div *ngIf="notifications.length !== 0; then thenBlock else elseBlock;"></div>
+            <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                <div class="action">Notification</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #thenBlock>
+    <perfect-scrollbar class="content">
+        <ng-container *ngFor="let notification of notifications; last as isLast">
+            <div class="notice" fxLayout="row" fxLayoutAlign="start center" mat-ripple>
+                <mat-icon class="icon">notifications</mat-icon>
+                <div (click)="routingPages(notification)" class="title" fxLayout="column">
+                    <div class="name">{{ notification.title }}</div>
+                    <div class="time">{{ notification.message }}</div>
+                </div>
+                <span fxFlex></span>
+                <button type="button" mat-icon-button (click)="delete($event, notification)">
+        <mat-icon class="close">close</mat-icon>
+      </button>
+            </div>
+            <div class="divider" *ngIf="!isLast"></div>
+        </ng-container>
+    </perfect-scrollbar>
+</ng-template>
+
+<ng-template #elseBlock>
+    <div class="no" fxLayout="row" fxLayoutAlign="center center">No Data</div>
+</ng-template>

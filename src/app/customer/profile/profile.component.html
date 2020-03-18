@@ -1,0 +1,83 @@
+<div class="host-display">
+
+    <div fxLayout="row">
+        <div class="profile m-r-20" fxFlex="340px">
+            <mat-card fxFlex class="mat-elevation-z4">
+                <div mat-card-image class="profile-image"></div>
+                <div class="profile-image-avatar text-center">
+                    <img class="avatar" src="https://lh5.googleusercontent.com/-hcRNe540rco/AAAAAAAAAAI/AAAAAAAAAAk/DfS45tpAR-A/photo.jpg">
+                </div>
+                <mat-card-content class="text-center">
+                    <h4 class="mat-card-title">{{user.name}}</h4>
+                    <h6 class="mat-card-subtitle">User</h6>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <mat-card fxFlex class="mat-elevation-z4">
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="Account Details">
+                    <div class="example-box mat-elevation-z4">
+                        <form #userForm="ngForm">
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="User ID" [(ngModel)]="user.id" name="id" #id="ngModel" [readonly]="readOnly" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Name" [(ngModel)]="user.name" name="name" #name="ngModel" [readonly]="readOnly" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" [readonly]="readOnly" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Phone" [(ngModel)]="user.phone" name="phone" #phone="ngModel" [readonly]="readOnly" required>
+                            </mat-form-field>
+
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Wallet Address" [(ngModel)]="user.walletAddress" name="walletAddress" #walletAddress="ngModel" [readonly]="readOnly" required>
+                            </mat-form-field>
+
+                            <mat-form-field class="display-block">
+                                <!-- <input matInput placeholder="Date of Birth" type="text"  formControlName="dob" required > -->
+                                <input matInput [matDatepicker]="picker" [readonly]="readOnly" [(ngModel)]="user.dob" name="dob" #dob="ngModel" placeholder="Date of Birth">
+                                <mat-datepicker [disabled]="user.dob" #picker></mat-datepicker>
+                            </mat-form-field>
+                            <!-- <mat-form-field>
+                              <input matInput placeholder="email" [(ngModel)]="user.id" name="id" #id="ngModel" [readonly]  required>
+                            </mat-form-field> -->
+
+                        </form>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Address Details">
+                    <div class="example-box mat-elevation-z4">
+                        <form #userForm="ngForm">
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Street" [(ngModel)]="address.street" name="street" #street="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="City" [(ngModel)]="address.city" name="city" #city="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="State" [(ngModel)]="address.state" name="state" #state="ngModel" required>
+                            </mat-form-field>
+
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Country" [(ngModel)]="address.country" name="country" #country="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="ZIP" [(ngModel)]="address.zip" name="zip" #zip="ngModel" required>
+                            </mat-form-field>
+                            <div>
+                                <!-- <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button> -->
+
+                                <button mat-stroked-button (click)="updateUser()">Update Your Details</button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </div>
+
+</div>

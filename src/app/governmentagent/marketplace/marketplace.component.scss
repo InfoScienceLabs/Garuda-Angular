@@ -1,0 +1,15 @@
+@import '../../../scss/marketplace.scss';
+#page-banner-area {
+    background: url(../../../assets/images/banner.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+:host {
+    display: block;
+    padding: 0px !important;
+}
+
+.listing-own {
+    margin: 1rem 0;
+}

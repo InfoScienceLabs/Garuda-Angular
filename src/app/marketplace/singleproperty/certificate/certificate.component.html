@@ -1,0 +1,36 @@
+<div class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+    <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="100%">
+            <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+                <swiper class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled">
+                    <div *ngFor="let cert of certificate_data.certificate.slice().reverse() ; let i = index" class="swiper-slide">
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+                            <div class="main" [ngClass]="{'revoked' : cert.revoke}">
+                                <div class="container">
+                                    <div class="logos">
+                                        <img src="../../../../assets/images/garuda.svg" width="175">
+                                    </div>
+                                    <div class="title">CERTIFICATE OF OWNERSHIP</div>
+                                    <div class="n-s">
+                                        <div class="sub-title">This is to certify that</div>
+                                        <div class="name">{{cert.name}}</div>
+                                    </div>
+                                    <div class="p-1">Having stake of <span>{{certificate_data.certificate[0].stake}} %</span> in property <span class="c-p" matTooltip="view: {{certificate_data.propertyId }}">
+                                    <a class="td-n" href="http://165.22.54.104:4100/transactions/{{certificate_data.propertyId}}" target="_blank">{{certificate_data.propertyId | slice:0:12}}</a>...</span>
+                                    having ID<span class="c-p" matTooltip="view: {{certificate_data.certificate[0].docId}}"><a class="td-n" href="http://165.22.54.104:4100/transactions/{{certificate_data.certificate[0].docId}}" target="_blank">
+                                    {{cert.docId | slice:0:12}}</a>...</span></div> <div>on date <span>{{certificate_data.certificate[0].date | date: 'dd/MM/yyyy'}}</span>. </div>
+                                    <div class="p-1">This certificate can be verified by transaction&nbsp; <span class="c-p" matTooltip="view: {{certificate_data.hash }}">
+                                    <a class="td-n" href="http://165.22.54.104:4100/transactions/{{certificate_data.hash}}" target="_blank">{{cert.hash | slice:0:12}}</a>...</span></div>
+                                    <img src="../../../../assets/images/garuda.svg" width="200">
+                                </div>
+                                <div class="p-1 revoke-message" *ngIf="cert.revoke">The Ownership has been transfered on {{cert['revokeDate'] | date:'dd/MM/yyyy'}}</div>
+                            </div>
+                        </div>
+                        <!-- <div class="swiper-button-prev" [hidden]="config.navigation === false"></div>
+                        <div class="swiper-button-next" [hidden]="config.navigation === false"></div> -->
+                    </div>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</div>

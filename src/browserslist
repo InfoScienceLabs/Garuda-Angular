@@ -1,0 +1,12 @@
+# This file is currently used by autoprefixer to adjust CSS to support the below specified browsers
+# For additional information regarding the format and rule options, please see:
+# https://github.com/browserslist/browserslist#queries
+#
+# For IE 9-11 support, please remove 'not' from the last line of the file and adjust as needed
+
+> 0.5%
+last 2 versions
+Firefox ESR
+not dead
+not IE 9-11
+#{"publicKey":"BP0teiTo7f_F-agsBjANV943vrMLRmu3SsAQF3S7YroWS9X74YuZA-Jvki3dNtXie4eX9v2WzVv1rSPAImq3tZo","privateKey":"NzToNUf6pVTVw_Ons4iw5qdI5W1Bn6ZhA-FZTZZ-mo8"}

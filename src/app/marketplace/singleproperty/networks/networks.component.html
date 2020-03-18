@@ -1,0 +1,49 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+    <div fxFlex="100" fxFlex.xs="100">
+        <mat-card-title color="primary">Network Transaction</mat-card-title>
+        <mat-select class="form-control" [(ngModel)]="trx_type" name="trx_type" placeholder="Choose the Transaction Type" (ngModelChange)="networkDetails()">
+            <mat-option value="public">Public</mat-option>
+            <mat-option value="private">Private</mat-option>
+        </mat-select>
+        <mat-card-content>
+            <form>
+                <mat-list-item>
+                    <p *ngIf="message">{{message}}</p>
+                    <ng-container *ngIf="networkObject">
+
+                        <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                            <p mat-line>Hash : {{networkObject.hash | slice:0:23}}...</p>
+                            <button (click)="copyToClipboard()" ngxClipboard [cbContent]="networkObject.hash" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                        </div>
+                        <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                            <p mat-line>Status : {{networkObject.status}} </p>
+                            <div></div>
+                        </div>
+                        <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                            <p mat-line>Message : {{networkObject.message}}</p>
+                            <div></div>
+                        </div>
+                        <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                            <p mat-line>Sender : {{networkObject.sender | slice:0:23}}...</p>
+                            <button (click)="copyToClipboard()" ngxClipboard [cbContent]="networkObject.sender" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="m-t-2" fxLayoutGap="10px">
+                            <button mat-stroked-button color="accent"><a class="td-n" href="{{networkObject.url}}"
+                                target="_blank">Explorer View</a></button>
+                            <button mat-stroked-button color="warn" (click)="onNoClick()">Close</button>
+                        </div>
+                    </ng-container>
+                </mat-list-item>
+            </form>
+        </mat-card-content>
+    </div>
+</div>
+
+<!-- 
+                        <p mat-line class="p-t-2">Hash : <span matTooltip="{{networkObject.hash}}">{{networkObject.hash | slice:0:10}}...</span></p>
+                        <p mat-line class="p-t-2"> Status : <span matTooltip="{{networkObject.status}}"> {{networkObject.status}} </span></p>
+                        <p mat-line class="p-t-2"> Message : <span matTooltip="{{networkObject.message}}"> {{networkObject.message}} </span></p>
+                        <p mat-line class="p-t-2"> Sender : <span matTooltip="{{networkObject.status}}"> {{networkObject.sender | slice:0:10}}... </span></p> -->
+
+<!-- <p mat-line class="p-t-2"> Gas Used : <span matTooltip="{{network_data.public.receipt.gasUsed}}"> {{network_data.public.receipt.gasUsed}} Ethers </span></p> -->
+<!-- <p mat-line class="p-t-2"> BlockNumber : <span matTooltip="{{network_data.public.receipt.blockNumber}}"> {{network_data.public.receipt.blockNumber}} </span></p> -->

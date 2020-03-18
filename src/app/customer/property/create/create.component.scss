@@ -1,0 +1,110 @@
+@import '../../../../scss/marketplace.scss';
+#page-banner-area {
+    background: url(../../../../assets/images/single.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.example-header-image-crtf {
+    background-image: url(../../../../assets/images/avatars/winner.png);
+    background-size: cover;
+}
+
+.py-3 {
+    padding: 2rem 0;
+}
+
+.list {
+    background-image: url(../../../../assets/images/avatars/list.png);
+    &.create {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.sold {
+    background-image: url(../../../../assets/images/avatars/sold.png);
+    &.create {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.approve {
+    background-image: url(../../../../assets/images/avatars/approved.png);
+    &.create {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.reject {
+    background-image: url(../../../../assets/images/avatars/reject.png);
+    &.create {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.review {
+    background-image: url(../../../../assets/images/avatars/review.png);
+    &.create {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.custom-file-input {
+    color: transparent;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2);
+    background-color: #2ecc71;
+    transition: background-color .3s;
+    line-height: 30px;
+    border-radius: 4px;
+}
+
+// input[type=file]::-webkit-file-upload-button {
+//     visibility: hidden;
+// }
+// input[type="file"]::-ms-browse {
+//     visibility: hidden;
+// }
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Upload';
+    color: white;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    padding-top: 0;
+    border-radius: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.remove {
+    position: relative;
+    right: 24px;
+    bottom: 97px;
+    cursor: pointer;
+}

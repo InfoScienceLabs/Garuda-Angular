@@ -1,0 +1,164 @@
+<div class="display-block">
+    <div id="page-banner-area" class="page-banner">
+        <div class="page-banner-title">
+            <div class="text-center">
+                <!-- <h2>APPROVALS</h2> -->
+                <span class="crumbs-spacer"> <a [routerLink]="[ '/']"><i class="material-icons">home</i>Home</a></span>
+                <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                <span class="crumbs-spacer"><a [routerLink]="[ '/government/tax']">Approvals</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="host-display">
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Residential">
+            <p class="t-justify taxespara">Please add tax rates here</p>
+            <!-- <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum, bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt. Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac turpis
+                nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci. </p>
+            <p class="t-justify taxespara">Duis non tincidunt dui. Sed vehicula, libero at eleifend accumsan, lectus massa mollis metus, a malesuada velit orci nec elit Suspendisse nisl mauris, rhoncus quis faucibus vitae, commodo vitae neque. Nullam vulputate feugiat diam, id tempor
+                neque hendreit quis. Curabitur ut felis ultrices, pellentesque augue ac, bibendum lorem. Curabitur non volutpat augue. Aliquam malesuada scelerisque tortor eget mollis. </p>
+            <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nisi sequi quo laborum eveniet illum ex doloremque porro repellat. Saepe sed atque eos inventore facilis officiis dolorum, incidunt optio iure! Itaque libero et vel labore voluptatem
+                natus nulla, sunt quaerat velit officia! Ipsum fuga magni, sapiente reprehenderit dolores eaque excepturi facilis, praesentium.</p> -->
+            <form #taxpercentageForm1="ngForm">
+
+
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="50px" class="m-t-15">
+                    <div>
+                        <label>Type:  <b>Residential</b></label>
+                    </div>
+                    <div>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Tax " [(ngModel)]="residentialTax" name="residentialTax" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" *ngIf="comm_new" (click)="taxpercentage(residentialTax,'Residential')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!comm_new" (click)="UpdateTaxpercentage(residentialTax,'Residential')">Update</button>
+                    </div>
+
+                </div>
+                <!-- <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px"> -->
+
+
+                <!-- <mat-form-field class="display-block">
+          <input matInput placeholder="Property Type" [(ngModel)]="property.propertyType" name="propertyType"
+            #propertyType="ngModel" required>
+        </mat-form-field> -->
+                <!-- <div class="display-block">
+                        <label>Type:  <b>Residential</b></label>
+                    </div>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Tax " [(ngModel)]="residentialTax" name="residentialTax" required>
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutAlign="center center"> -->
+                <!-- <button mat-raised-button fxFlex color="accent">Submit</button> -->
+                <!-- <button mat-raised-button color="primary" *ngIf="comm_new" (click)="taxpercentage(residentialTax,'Residential')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!comm_new" (click)="UpdateTaxpercentage(residentialTax,'Residential')">Update</button>
+                    </div>
+                </div> -->
+            </form>
+        </mat-tab>
+        <mat-tab label="Commercial">
+            <p class="t-justify taxespara">Please add tax rates here</p>
+            <!-- <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum, bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt. Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac turpis
+                nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci. </p>
+            <p class="t-justify taxespara">Duis non tincidunt dui. Sed vehicula, libero at eleifend accumsan, lectus massa mollis metus, a malesuada velit orci nec elit Suspendisse nisl mauris, rhoncus quis faucibus vitae, commodo vitae neque. Nullam vulputate feugiat diam, id tempor
+                neque hendreit quis. Curabitur ut felis ultrices, pellentesque augue ac, bibendum lorem. Curabitur non volutpat augue. Aliquam malesuada scelerisque tortor eget mollis. </p>
+            <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nisi sequi quo laborum eveniet illum ex doloremque porro repellat. Saepe sed atque eos inventore facilis officiis dolorum, incidunt optio iure! Itaque libero et vel labore voluptatem
+                natus nulla, sunt quaerat velit officia! Ipsum fuga magni, sapiente reprehenderit dolores eaque excepturi facilis, praesentium.</p> -->
+            <form #taxpercentageForm2="ngForm">
+
+
+
+                <!-- <mat-form-field class="display-block">
+            <input matInput placeholder="Property Type" [(ngModel)]="property.propertyType" name="propertyType"
+              #propertyType="ngModel" required>
+          </mat-form-field>
+   -->
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="50px" class="m-t-15">
+                    <div>
+                        <label>Type:  <b>Commercial</b></label>
+                    </div>
+                    <div>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Tax" [(ngModel)]="commercialTax" name="commercialTax" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" *ngIf="resi_new" (click)="taxpercentage(commercialTax,'Commercial')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!resi_new" (click)="UpdateTaxpercentage(commercialTax,'Commercial')">Update</button>
+                    </div>
+
+                </div>
+                <!-- <div class="display-block">
+                        <label>Type:  <b>Commercial</b></label>
+                    </div>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Tax" [(ngModel)]="commercialTax" name="commercialTax" required>
+                    </mat-form-field>
+
+
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                       
+                        <button mat-raised-button color="prima  ry" *ngIf="resi_new" (click)="taxpercentage(commercialTax,'Commercial')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!resi_new" (click)="UpdateTaxpercentage(commercialTax,'Commercial')">Update</button>
+                    </div> -->
+            </form>
+
+        </mat-tab>
+        <mat-tab label="Agriculture">
+            <p class="t-justify taxespara">Please add tax rates here</p>
+            <!-- <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum, bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt. Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac turpis
+                nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci. </p>
+            <p class="t-justify taxespara">Duis non tincidunt dui. Sed vehicula, libero at eleifend accumsan, lectus massa mollis metus, a malesuada velit orci nec elit Suspendisse nisl mauris, rhoncus quis faucibus vitae, commodo vitae neque. Nullam vulputate feugiat diam, id tempor
+                neque hendreit quis. Curabitur ut felis ultrices, pellentesque augue ac, bibendum lorem. Curabitur non volutpat augue. Aliquam malesuada scelerisque tortor eget mollis. </p>
+            <p class="t-justify taxespara">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nisi sequi quo laborum eveniet illum ex doloremque porro repellat. Saepe sed atque eos inventore facilis officiis dolorum, incidunt optio iure! Itaque libero et vel labore voluptatem
+                natus nulla, sunt quaerat velit officia! Ipsum fuga magni, sapiente reprehenderit dolores eaque excepturi facilis, praesentium.</p> -->
+            <form #taxpercentageForm3="ngForm">
+
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="50px" class="m-t-15">
+                    <div>
+                        <label>Type:  <b>Agriculture</b></label>
+                    </div>
+                    <div>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Tax" [(ngModel)]="agricultureTax" name="agricultureTax" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" *ngIf="agri_new" (click)="taxpercentage(agricultureTax,'Agricultural')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!agri_new" (click)="UpdateTaxpercentage(agricultureTax,'Agricultural')">Update</button>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px"> -->
+
+
+                <!-- <mat-form-field class="display-block">
+            <input matInput placeholder="Property Type" [(ngModel)]="property.propertyType" name="propertyType"
+              #propertyType="ngModel" required>
+          </mat-form-field> -->
+                <!-- <div class="display-block">
+                        <label>Type:  <b>Agriculture</b></label>
+                    </div> -->
+                <!-- <mat-form-field class="display-block">
+                        <input matInput placeholder="Tax" [(ngModel)]="agricultureTax" name="agricultureTax" required>
+                    </mat-form-field> -->
+
+
+                <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
+                <!-- <button mat-raised-button fxFlex color="accent">Submit</button> -->
+                <!-- <button mat-raised-button color="primary" *ngIf="agri_new" (click)="taxpercentage(agricultureTax,'Agricultural')">Submit</button>
+                        <button mat-raised-button color="primary" *ngIf="!agri_new" (click)="UpdateTaxpercentage(agricultureTax,'Agricultural')">Update</button>
+                    </div> -->
+                <!-- </div> -->
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</div>

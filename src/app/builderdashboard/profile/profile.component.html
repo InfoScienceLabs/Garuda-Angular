@@ -1,0 +1,77 @@
+<div class ="container">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" class="m-t-15">
+      <div fxFlex.gt-sm='50'>
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+              <mat-step>
+                  <ng-template matStepLabel>Account Details</ng-template>
+                  <form  #userForm="ngForm">
+                  <mat-form-field class="display-block">
+                      <input matInput placeholder="User ID" [(ngModel)]="user.id" name="id" #id="ngModel" [readonly]="readOnly" required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Name" [(ngModel)]="user.name" name="name" #name="ngModel" [readonly]="readOnly" required>
+                      </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" [readonly]="readOnly"  required>
+                      </mat-form-field>
+
+                      <mat-form-field class="display-block">
+                          <input matInput placeholder="Wallet ID" [(ngModel)]="user.walletAddress" name="walletAddress" #walletAddress="ngModel" [readonly]="readOnly"  required>
+                        </mat-form-field> 
+                        
+                        <mat-form-field class="display-block">
+                            <!-- <input matInput placeholder="Date of Birth" type="text"  formControlName="dob" required > -->
+                            <input matInput [matDatepicker]="picker" [readonly]="readOnly" [(ngModel)]="user.dob" name="dob" #dob="ngModel"  placeholder="Date of Birth">
+                            <mat-datepicker [disabled]="user.dob"  #picker></mat-datepicker>   
+                        </mat-form-field>
+                        <!-- <mat-form-field>
+                            <input matInput placeholder="email" [(ngModel)]="user.id" name="id" #id="ngModel" [readonly]  required>
+                          </mat-form-field> -->
+                       
+                          </form>
+                  
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                  </mat-form-field>
+                  -->
+             
+              
+                <div>
+                  <!-- <button mat-button  matStepperPrevious>Back</button> -->
+                  <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+                  <!-- <button mat-button (click)="addUser()" *ngIf="isNew" [disabled]="!propertyForm.valid">Create Property</button> -->
+               
+  
+                </div>
+              </mat-step>
+              <mat-step>
+                  <ng-template matStepLabel>Account Details</ng-template>
+                  <form  #userForm="ngForm">
+                  <mat-form-field class="display-block">
+                      <input matInput placeholder="Street" [(ngModel)]="address.street" name="street" #street="ngModel"  required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="City" [(ngModel)]="address.city" name="city" #city="ngModel"  required>
+                      </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="State" [(ngModel)]="address.state" name="state" #state="ngModel"  required>
+                    </mat-form-field>
+
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Country" [(ngModel)]="address.country" name="country" #country="ngModel"   required>
+                      </mat-form-field> 
+                      <mat-form-field class="display-block">
+                          <input matInput placeholder="ZIP" [(ngModel)]="address.zip" name="zip" #zip="ngModel"   required>
+                        </mat-form-field> 
+                      <div>
+                          <!-- <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button> -->
+
+                          <button mat-button (click)="updateUser()" >Update Your Details</button>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-horizontal-stepper>
+      </div>
+  </div>
+  </div>

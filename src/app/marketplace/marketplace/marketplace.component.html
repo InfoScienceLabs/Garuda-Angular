@@ -1,0 +1,31 @@
+<div class="container-card">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="30px">
+        <div fxFlex="27" *ngFor="let property of dataSource" class="m-t-15">
+            <!-- <mat-card class="example-card" [routerLink]="['./view/',property.propertyId]"> -->
+            <mat-card class="example-card">
+                <div [routerLink]="['./view/',property.propertyId]" class="ot">
+                    <img mat-card-image class="property-img" [src]="property.image[0]" onError="this.src='../../../../assets/images/avatars/propertyImage.jpg';">
+
+                    <mat-card-title class="text-cap">{{property.name}}</mat-card-title>
+                    <mat-card-content>
+                        <p class="reduce-lenght m-b-1">Property Id: {{property.propertyId}}</p>
+                        <p class="m-b-1">Area: {{property.area}} (sqft)</p>
+                        <p class="m-b-1">Value: {{property.value | currency : 'INR': true}}</p>
+                        <div class="adderess m-b-1" *ngIf="property.address">
+                            <mat-icon class="icon">location_on</mat-icon>
+                            <span>{{property.address.city}},{{property.address.state}},{{property.address.country}}</span>
+                        </div>
+
+                        <!-- <p class="m-b-1"> Status : {{property.status}}</p> -->
+                        <!-- <p> Status : <span class="accent">{{this.status_msg_dict[property.status]}}</span> -->
+                    </mat-card-content>
+                </div>
+                <form #usermarketplaceForm="ngForm" class="delist">
+                    <button mat-button color="accent" class="p-0" *ngIf="this.status_msg_dict[property.status]==='Listed'" (click)="Delist(property)"><mat-icon>delete_sweep</mat-icon>DELIST</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <mat-paginator [length]="pageIndex" [pageSize]="10" [pageSizeOptions]="[pageSize]" (page)="pageEvent = getUserProperties($event)">
+        </mat-paginator>
+</div>

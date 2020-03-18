@@ -1,0 +1,128 @@
+<div class="display-block">
+    <div id="page-banner-area" class="page-banner">
+        <div class="page-banner-title">
+            <div class="text-center">
+                <!-- <h2>TRANSACTION</h2> -->
+                <span class="crumbs-spacer"> <a [routerLink]="[ '/']"><i class="material-icons">home</i>Home</a></span>
+                <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                <span class="crumbs-spacer"><a [routerLink]="[ '/government/transactions']">Transaction</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="host-display pb-2">
+    <div fxLayout="row wrap" fxLayoutAlign="center start">
+        <!-- <div fxFlex="100" fxFlex.xs="100">
+            <h1 class="page-header">Filter</h1>
+            <mat-card>
+                <mat-card-content>
+                    <form>
+                        <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="30px">
+                            <mat-form-field fxFlex>
+                                <input type="text" matInput placeholder="Transaction Id" />
+                            </mat-form-field>
+                            <mat-form-field fxFlex>
+                                <mat-label>Transaction Type</mat-label>
+                                <mat-select>
+                                    <mat-option value="option1">Option 1</mat-option>
+                                    <mat-option value="option2">Option 2</mat-option>
+                                    <mat-option value="option3">Option 3</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field fxFlex>
+                                <input type="text" matInput placeholder="Status" />
+                            </mat-form-field>
+                            <button mat-raised-button type="submit"><mat-icon>filter_list</mat-icon>Filter</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+        </div> -->
+        <div fxFlex="100" fxFlex.xs="100">
+            <h1 class="page-header">Transaction</h1>
+            <div class="m-t-15">
+                <mat-card-content>
+
+                    <!-- <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+                      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="expandedDetail">
+                          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                              <div class="example-element-detail" [@detailExpand]="transaction == expandedElement ? 'expanded' : 'collapsed'">
+                                  <div class="example-element-diagram">
+                                      <div class="example-element-symbol"> {{transaction.transactionType}} </div>
+                                      <div class="example-element-weight"> {{transaction.status}} </div>
+                                      <div class="example-element-position"> {{transaction.sender}} </div>
+                                      <div class="example-element-name"> {{transaction.address}} </div>
+                                  </div>
+                                  <div class="example-element-description">
+                                      {{transaction.address}}<br/> <br/>{{transaction.scope}}
+                                      <div (click)="view_network()"> {{transaction.public.hash | slice:0:6}}</div>
+                                      <div style="color: green" matTooltip="Click to view: {{transaction.public.hash}}"> {{transaction.public.hash | slice:0:6}}... </div>
+                                      <span class="example-element-description-attribution"> -- Wikipedia </span>
+                                  </div>
+                              </div>
+                          </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
+                      </tr>
+                      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                  </table> -->
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+                        <ng-container matColumnDef="propertyImg">
+                            <th mat-header-cell *matHeaderCellDef> Property Image </th>
+                            <td mat-cell *matCellDef="let property">
+
+                                <img src="./../../../assets/images/avatars/thumbimg.jpg" width="50">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Transaction Id">
+                            <th mat-header-cell *matHeaderCellDef> Transaction Id </th>
+                            <td mat-cell *matCellDef="let transaction" class="cursor-p"> {{transaction.id | slice:0:6}}... </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Transaction Type">
+                            <th mat-header-cell *matHeaderCellDef> Transaction Type</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.transactionType}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="address">
+                            <th mat-header-cell *matHeaderCellDef> Address </th>
+                            <td mat-cell *matCellDef="let transaction" class="cursor-p" matTooltip="{{transaction.address}}"> {{transaction.address | slice:0:6}}... </td>
+                        </ng-container>
+                        <ng-container matColumnDef="public?">
+                            <th mat-header-cell *matHeaderCellDef> Public</th>
+                            <td mat-cell *matCellDef="let transaction;  let i = index" class="cursor-p" (click)="view_public_network(i,transaction,transaction.public)" matTooltip="Click to view: {{transaction.public && transaction.public.hash}}" > {{transaction.public && transaction.public.hash | slice:0:6}}... </td>
+                        </ng-container>
+                        <ng-container matColumnDef="private?">
+                            <th mat-header-cell *matHeaderCellDef> Private</th>
+                            <td mat-cell *matCellDef="let transaction ;  let i = index" class="cursor-p" (click)="view_private_network(i,transaction,transaction.private)" matTooltip="Click to view: {{transaction.private && transaction.private.hash}}"> {{transaction.private && transaction.private.hash | slice:0:6}}... </td>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status</th>
+                            <td mat-cell *matCellDef="let transaction" class="cursor-p" [ngClass]="{'color-green': transaction.status === 'Success', 'color-yellow':transaction.status === 'In_Progress'}">
+                                {{transaction.status}}
+                            </td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="scope?">
+                          <th mat-header-cell *matHeaderCellDef> Scope</th>
+                          <td mat-cell *matCellDef="let transaction" matTooltip="Click to view: {{transaction.scope}}"> {{transaction.scope | slice:0:6}}... </td>
+                      </ng-container> -->
+                        <ng-container matColumnDef="sender">
+                            <th mat-header-cell *matHeaderCellDef> Sender</th>
+                            <td mat-cell *matCellDef="let transaction" class="cursor-p" matTooltip="Click to view: {{transaction.sender}}"> {{transaction.sender | slice:0:6}}... </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row color="accent" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                </mat-card-content>
+                <mat-paginator [length]="pageIndex" [pageSize]="10" [pageSizeOptions]="[pageSize]" (page)="pageEvent = gettransaction($event)">
+                    </mat-paginator>
+            </div>
+        </div>
+
+    </div>
+</div>

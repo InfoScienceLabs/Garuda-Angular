@@ -1,0 +1,17 @@
+@import '../signin/signin.component.scss';
+.policy {
+    p {
+        // color: #ffffff;
+        text-align: justify;
+        font-size: 12px;
+    }
+    a {
+        text-decoration: none;
+        // color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.signup {
+    cursor: pointer;
+}

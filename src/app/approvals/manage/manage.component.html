@@ -1,0 +1,196 @@
+<div fxLayout="row" class="m-t-16">
+    <div fxFlex="100">
+        <mat-card class="z-depth-4">
+            <div class="property-details">
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="10px">
+                    <div fxFlex="30" fxFlex.xs="50" class="mr-30">
+                        <div class="info">
+                            <h3 class="title-property">{{property.name}}</h3>
+                            <p class="address">
+                                <mat-icon class="icon">domain</mat-icon> {{property.propertyType}}</p>
+                            <p class="address">
+                                <mat-icon class="icon">location_on</mat-icon> {{property.address.street}}, {{property.address.city}}, {{property.address.state}}
+                            </p>
+                        </div>
+                    </div>
+                    <div fxFlex fxFlex.xs="50" class="mr-30">
+                        <div class="details">
+                            <div class="details-listing width-30">
+                                <p>Size (Sq.ft)</p>
+                                <h5>{{property.area}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex fxFlex.xs="50" class="mr-30">
+                        <div class="others">
+                            <ul>
+                                <li><span>
+                                        {{property.value | currency : 'INR': true}}
+                                       </span></li>
+                                <li>
+                                    <a>
+                                        <mat-icon class="icon">favorite_border</mat-icon>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <mat-icon class="icon">print</mat-icon>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<div class="clear"></div>
+<div fxLayout="row" class="m-t-16" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+    <div fxFlex="70" fxFlex.xs="100">
+        <div class="display-block">
+            <img mat-card-image [src]="property.image[0]" class="img-slide-show" onError="this.src='../../../../assets/images/avatars/propertyImage.jpg';">
+        </div>
+    </div>
+    <div fxFlex="30" fxFlex.xs="100" fxLayoutGap="20px">
+        <mat-card class="example-card m-b-20">
+            <mat-card-content>
+                <form #propertystatusForm="ngForm">
+                    <!-- {{property.status}} -->
+                    <ng-container *ngIf="status==true ;else show">
+                        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center" class="p-10">
+                            <div mat-card-avatar class="status-property" [ngClass]="{'list':property.status==4, 'sold': property.status==5, 'approve': property.status==2,'reject': property.status==3, 'review': property.status==1}"></div>
+                            <mat-card-title class="side-peoperty">This Property Has Been {{this.status_msg_dict[property.status]}}</mat-card-title>
+                        </div>
+                    </ng-container>
+                    <ng-template #show>
+                        <div fxLayout="column" fxLayoutGap="30px">
+                            <mat-radio-group name="status" [(ngModel)]="property.status" required #status="ngModel">
+                                <mat-radio-button value="2">Approved</mat-radio-button>
+                                <mat-radio-button value="3">Rejected</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div fxLayout="column" fxLayoutGap="10px" class="m-t-2">
+                            <mat-form-field fxFlex *ngIf="property.status==='3'">
+                                <textarea matInput placeholder="Message" name="message" [(ngModel)]="property.message" #name="ngModel" required></textarea>
+                            </mat-form-field>
+                            <div fxFlex>
+                                <button mat-raised-button color="primary" (click)="propertystatus()">Submit</button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="10">
+    <div fxFlex="100">
+        <div class="display-block">
+            <h1 class="desc-title">Property Description</h1>
+            <p>{{property.description}} </p>
+        </div>
+        <div class="display-block">
+            <h1 class="desc-title">Quick Summary</h1>
+            <ul class="additional-details">
+                <li>
+                    <strong>AC:</strong>
+                    <span>Central</span>
+                </li>
+                <li>
+                    <strong>ACRES:</strong>
+                    <span>0.14</span>
+                </li>
+                <li>
+                    <strong>ACRES SOURCE:</strong>
+                    <span>Assessor</span>
+                </li>
+                <li>
+                    <strong>AP #:</strong>
+                    <span>2639-017-020</span>
+                </li>
+                <li>
+                    <strong>APPLIANCES:</strong>
+                    <span>Cooktop - Gas, Dishwasher, Freestanding Gas Range, Garbage Disposal</span>
+                </li>
+                <li>
+                    <strong>BATHROOM DESCRIPTION:</strong>
+                    <span>Remodeled, Skylight(s), Tile Walls</span>
+                </li>
+                <li>
+                    <strong>DOORS &amp; WINDOWS:</strong>
+                    <span>Double Pane Windows, Skylights</span>
+                </li>
+                <li>
+                    <strong>FIREPLACE DESCRIPTION:</strong>
+                    <span>Brick</span>
+                </li>
+                <li>
+                    <strong>FIREPLACE FUEL:</strong>
+                    <span>Uses Both Gas &amp; Wood</span>
+                </li>
+                <li>
+                    <strong>FIREPLACE LOCATION:</strong>
+                    <span>Living Room</span>
+                </li>
+                <li>
+                    <strong>FLOORS:</strong>
+                    <span>Carpet - Partial, Ceramic Tile</span>
+                </li>
+                <li>
+                    <strong>PLUMBING:</strong>
+                    <span>Full Copper Plumbing</span>
+                </li>
+            </ul>
+        </div>
+        <div class="display-block">
+            <h1 class="desc-title">Details</h1>
+            <ul class="property-features">
+                <li>Building Age: <span>2 Years</span></li>
+                <li>Parking: <span>Attached Garage</span></li>
+                <li>Cooling: <span>Central Cooling</span></li>
+                <li>Heating: <span>Forced Air, Gas</span></li>
+                <li>Sewer: <span>Public/City</span></li>
+                <li>Water: <span>City</span></li>
+                <li>Exercise Room: <span>Yes</span></li>
+                <li>Storage Room: <span>Yes</span></li>
+            </ul>
+        </div>
+        <div class="display-block">
+            <h1 class="desc-title">Floor Plans</h1>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            First Floor
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <div class="thumb">
+                        <img class="img-fluid" src="../../../../assets/images/floor-thumb-1.jpg" alt="img-fluid">
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Second Floor
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <div class="thumb">
+                        <img class="img-fluid" src="../../../../assets/images/floor-thumb-2.jpg" alt="img-fluid">
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div class="display-block">
+            <h1 class="desc-title">Location On Map</h1>
+            <div id="conatiner-map" style="position: relative; overflow: hidden;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15225.246616663242!2d78.33955502788402!3d17.444791308706325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93a2eb620af7%3A0x943fcc66d90e2d8e!2sIIIT%2C+Gachibowli%2C+Hyderabad%2C+Telangana+500032!5e0!3m2!1sen!2sin!4v1552289440710"
+                    width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>

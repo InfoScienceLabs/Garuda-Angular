@@ -1,0 +1,70 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="10">
+    <div fxFlex="100" fxFlex.xs="100">
+        <mat-card-title>Network Transaction : {{title}}</mat-card-title>
+        <mat-card-content>
+            <form>
+                <mat-list-item>
+                    <div class="network-para">
+                        <div class="padding">
+
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="network_data.public">
+                                <p mat-line>Hash : {{network_data.public.hash | slice:0:30}}...</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.public.hash" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="network_data.private">
+                                <p mat-line>Hash : {{network_data.private.hash | slice:0:30 }}...</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.private.hash" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                                <p mat-line>Transaction Id : {{network_data.transactionId }}</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.transactionId" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                                <p mat-line>Address : {{network_data.address }}</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.address" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                                <p mat-line>Status : {{network_data.status}}</p>
+                                <div></div>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center">
+                                <p mat-line>Sender : {{network_data.sender }}</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.sender" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="network_data.public && network_data.public.receipt && network_data.public.receipt.gasUsed">
+                                <p mat-line>Gas Used : {{network_data.public.receipt.gasUsed}} </p>
+                                <div></div>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="network_data.private && network_data.private.receipt && network_data.private.receipt.gasUsed">
+                                <p mat-line>Gas Used : {{network_data.private.receipt.gasUsed}}</p>
+                                <div></div>
+                            </div>
+                            <div class="p-t-2" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="network_data.public && network_data.public.receipt && network_data.public.receipt.blockNumber">
+                                <p mat-line>Sender : {{network_data.public.receipt.blockNumber }}...</p>
+                                <button (click)="copyToClipboard()" ngxClipboard [cbContent]="network_data.public.receipt.blockNumber" mat-button class="hash"><mat-icon matTooltip="Copy">filter_none</mat-icon></button>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="m-t-2" fxLayoutGap="10px">
+                            <button mat-stroked-button color="accent"><a class="td-n" (click)="onNoClick()" href="{{url_for_contract}}"
+                      target="_blank">Explorer View</a></button>
+                            <button mat-stroked-button color="warn" (click)="onNoClick()">Close</button>
+                        </div>
+                    </div>
+                </mat-list-item>
+            </form>
+        </mat-card-content>
+    </div>
+</div>
+
+
+<!-- Old code -->
+
+<!-- <p mat-line class="p-t-2" *ngIf="network_data.public"> Hash : <span>{{network_data.public.hash| slice:0:10}}...</span></p>
+                            <p mat-line class="p-t-2" *ngIf="network_data.private">Hash : <span>{{network_data.private.hash }}...</span></p>
+                            <p mat-line class="p-t-2">Transaction Id : <span>{{network_data.transactionId }}...</span></p>
+                            <p mat-line class="p-t-2">Address : <span>{{network_data.address }}...</span></p>
+                            <p mat-line> Status : <span> {{network_data.status}} </span></p>
+                            <p mat-line class="p-t-2"> Sender : <span> {{network_data.sender }}.... </span></p>
+                            <p mat-line *ngIf="network_data.public && network_data.public.receipt && network_data.public.receipt.gasUsed"> Gas Used : <span> {{network_data.public.receipt.gasUsed}} </span></p>
+                            <p mat-line *ngIf="network_data.private && network_data.private.receipt && network_data.private.receipt.gasUsed"> Gas Used : <span> {{network_data.private.receipt.gasUsed}} </span></p>
+                            <p mat-line *ngIf="network_data.public && network_data.public.receipt && network_data.public.receipt.blockNumber"> BlockNumber : <span> {{network_data.public.receipt.blockNumber}} </span></p> -->

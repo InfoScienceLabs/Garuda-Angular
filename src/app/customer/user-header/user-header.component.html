@@ -1,0 +1,47 @@
+<div class="main-toolbar mat-elevation-z6" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+        <a [routerLink]="['./']" class="brand-logo"><img width="200" src="../../../assets/images/garuda-home.svg" /></a>
+    </div>
+    <span fxFlex></span>
+    <div *ngFor="let link of links">
+        <a mat-button class="c-w" [routerLink]="link.url" routerLinkActive="router-link-active">{{link.title}}</a>
+    </div>
+
+    <a mat-button [matMenuTriggerFor]="menu"><span class="c-w">Networks</span></a>
+    <mat-menu #menu="matMenu">
+        <a mat-menu-item href="https://rinkeby.etherscan.io/address/0xc10ee5182591d8d4ddc9ea5a1c13eda9e5851e51" target="_blank">Public</a>
+        <a mat-menu-item href="http://165.22.54.104:4100" target="_blank">Private</a>
+    </mat-menu>
+
+    <app-user-notification></app-user-notification>
+    <div class="toolbar-user-container">
+        <button mat-button (click)="toggleDropdown()" class="toolbar-user-btn" [class.open]="isOpen">
+                        <span fxLayout="row" fxLayoutAlign="start center">
+                          <img class="avatar" [src]="currentUser.currentUser?.photoURL || 'assets/images/avatars/noavatar.png'">
+                          <span class="name" fxHide fxShow.gt-sm>{{currentUser.name | titlecase }}</span>
+                          <mat-icon class="icon" fxHide fxShow.gt-sm>keyboard_arrow_down</mat-icon>
+                        </span>
+            </button>
+        <div class="dropdown mat-elevation-z1" [class.open]="isOpen">
+            <mat-nav-list>
+                <mat-list-item [routerLink]="['./profile']">
+                    <mat-icon class="icon">account_circle</mat-icon>
+                    <span class="title">Profile</span>
+                </mat-list-item>
+                <!-- <mat-list-item routerLink="/pages/profile">
+                    <mat-icon class="icon">settings</mat-icon>
+                    <span class="title">Manage</span>
+                </mat-list-item> -->
+                <mat-list-item [routerLink]="['./wallet']">
+                    <mat-icon class="icon">account_circle</mat-icon>
+                    <span class="title">Wallet</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item (click)="logout()">
+                    <mat-icon class="icon">power_settings_new</mat-icon>
+                    <span class="title">Logout</span>
+                </mat-list-item>
+            </mat-nav-list>
+        </div>
+    </div>
+</div>

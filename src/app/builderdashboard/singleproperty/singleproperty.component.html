@@ -1,0 +1,213 @@
+<div class="display-block">
+    <div id="page-banner-area" class="page-banner">
+        <div class="page-banner-title">
+            <div class="text-center">
+                <h2>PROPERTIES</h2>
+                <a href="/"><i class="lni-home"></i> Home</a>
+                <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                <span class="current">Simple Listing</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="host">
+    <div fxLayout="row" class="m-t-16">
+        <div fxFlex="100">
+            <mat-card class="z-depth-4">
+                <div class="property-details">
+                    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+                        <div fxFlex="30" fxFlex.xs="50" class="mr-30">
+                            <div class="info">
+                                <h3 class="title-property">{{property.name}}</h3>
+                                <p class="room-type">Living Room</p>
+                                <p class="address">
+                                    <mat-icon>location_on</mat-icon> {{property.address.street}}, {{property.address.city}}, {{property.address.state}}
+                                </p>
+                            </div>
+                        </div>
+                        <div fxFlex="30" fxFlex.xs="50" class="mr-30">
+                            <div class="details">
+                                <div class="details-listing">
+                                    <p>Bedrooms</p>
+                                    <h5>05</h5>
+                                </div>
+                                <div class="details-listing">
+                                    <p>Washrooms</p>
+                                    <h5>06</h5>
+
+                                </div>
+                                <div class="details-listing">
+                                    <p>Size (Sq.ft)</p>
+                                    <h5>{{property.area}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxFlex="30" fxFlex.xs="50" class="mr-30">
+                            <div class="others">
+                                <ul>
+                                    <li><span>
+                                            {{property.value | currency : 'INR': true}}
+                                        </span></li>
+                                    <li>
+                                        <a>
+                                            <mat-icon>favorite_border</mat-icon>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <mat-icon>print</mat-icon>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div fxLayout="row" class="m-t-16" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+        <div fxFlex="70" fxFlex.xs="100">
+            <div class="display-block">
+                <img mat-card-image [src]="property.image[0]" onError="this.src='../../../../assets/images/avatars/propertyImage.jpg';">
+
+            </div>
+            <div class="display-block">
+                <h1 class="desc-title">Property Description</h1>
+
+                <p>{{property.description}} </p>
+            </div>
+            <div class="display-block">
+                <h1 class="desc-title">Quick Summary</h1>
+                <ul class="additional-details">
+                    <li>
+                        <strong>AC:</strong>
+                        <span>Central</span>
+                    </li>
+                    <li>
+                        <strong>ACRES:</strong>
+                        <span>0.14</span>
+                    </li>
+                    <li>
+                        <strong>ACRES SOURCE:</strong>
+                        <span>Assessor</span>
+                    </li>
+                    <li>
+                        <strong>AP #:</strong>
+                        <span>2639-017-020</span>
+                    </li>
+                    <li>
+                        <strong>APPLIANCES:</strong>
+                        <span>Cooktop - Gas, Dishwasher, Freestanding Gas Range, Garbage Disposal</span>
+                    </li>
+                    <li>
+                        <strong>BATHROOM DESCRIPTION:</strong>
+                        <span>Remodeled, Skylight(s), Tile Walls</span>
+                    </li>
+                    <li>
+                        <strong>DOORS &amp; WINDOWS:</strong>
+                        <span>Double Pane Windows, Skylights</span>
+                    </li>
+                    <li>
+                        <strong>FIREPLACE DESCRIPTION:</strong>
+                        <span>Brick</span>
+                    </li>
+                    <li>
+                        <strong>FIREPLACE FUEL:</strong>
+                        <span>Uses Both Gas &amp; Wood</span>
+                    </li>
+                    <li>
+                        <strong>FIREPLACE LOCATION:</strong>
+                        <span>Living Room</span>
+                    </li>
+                    <li>
+                        <strong>FLOORS:</strong>
+                        <span>Carpet - Partial, Ceramic Tile</span>
+                    </li>
+                    <li>
+                        <strong>PLUMBING:</strong>
+                        <span>Full Copper Plumbing</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="display-block">
+                <h1 class="desc-title">Details</h1>
+                <ul class="property-features">
+                    <li>Building Age: <span>2 Years</span></li>
+                    <li>Parking: <span>Attached Garage</span></li>
+                    <li>Cooling: <span>Central Cooling</span></li>
+                    <li>Heating: <span>Forced Air, Gas</span></li>
+                    <li>Sewer: <span>Public/City</span></li>
+                    <li>Water: <span>City</span></li>
+                    <li>Exercise Room: <span>Yes</span></li>
+                    <li>Storage Room: <span>Yes</span></li>
+                </ul>
+            </div>
+            <div class="display-block">
+                <h1 class="desc-title">Floor Plans</h1>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                First Floor
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+                        <div class="thumb">
+                            <img class="img-fluid" src="../../../../assets/images/floor-thumb-1.jpg" alt="img-fluid">
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Second Floor
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <div class="thumb">
+                            <img class="img-fluid" src="../../../../assets/images/floor-thumb-2.jpg" alt="img-fluid">
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="display-block">
+                <h1 class="desc-title">Location On Map</h1>
+                <div id="conatiner-map" style="position: relative; overflow: hidden;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15225.246616663242!2d78.33955502788402!3d17.444791308706325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93a2eb620af7%3A0x943fcc66d90e2d8e!2sIIIT%2C+Gachibowli%2C+Hyderabad%2C+Telangana+500032!5e0!3m2!1sen!2sin!4v1552289440710"
+                        width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="30" fxFlex.xs="100">
+            <mat-card>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=""> Property Name : {{property.name}}
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=""> Property Type : {{property.propertyType}}
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=""> Property Value : {{property.value}}
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=""> Area : {{property.area}}
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=""> Location : State - {{property.address.state}}, City - {{property.address.city}}
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button fxFlex *ngIf="property.addedBy && property.addedBy != currentUser.email" (click)="openDialog()" color="accent">Buy
+                                Now</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

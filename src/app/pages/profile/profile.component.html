@@ -1,0 +1,50 @@
+<div fxLayout="row">
+    <div class="profile m-r-20" fxFlex="340px">
+        <mat-card fxFlex>
+            <div mat-card-image class="profile-image"></div>
+            <div class="profile-image-avatar text-center">
+                <img class="avatar" src="https://lh5.googleusercontent.com/-hcRNe540rco/AAAAAAAAAAI/AAAAAAAAAAk/DfS45tpAR-A/photo.jpg">
+            </div>
+            <mat-card-content class="text-center">
+                <h4 class="mat-card-title">John</h4>
+                <h6 class="mat-card-subtitle">Developer</h6>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <stbui-github-button type="link|star|fork"></stbui-github-button>
+            </mat-card-actions> -->
+        </mat-card>
+    </div>
+
+    <mat-card fxFlex>
+        <mat-card-title>Profile</mat-card-title>
+        <mat-card-content>
+            <form fxLayout="column" #formContact="ngForm">
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="Name" name="name" ngModel required minlength="4" maxlength="10">
+                </mat-form-field>
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="Email Id" name="email" ngModel required>
+                </mat-form-field>
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="Phone Number" name="phone" ngModel required>
+                </mat-form-field>
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="Old Password" required>
+                </mat-form-field>
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="New Password" required>
+                </mat-form-field>
+                <mat-form-field class="display-block">
+                    <input matInput placeholder="Confirm Password" required>
+                </mat-form-field>
+                <!-- <mat-form-field class="display-block">
+                    <input matInput placeholder="website" name="website ngModel" required>
+                </mat-form-field> -->
+                <!-- <mat-form-field class="display-block">
+                    <textarea matInput placeholder="message" rows="3" name="message" ngModel required></textarea>
+                </mat-form-field> -->
+                <button mat-raised-button color="primary" type="submit" [disabled]="!formContact.valid">Update</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,8 @@
+@import '../../../../../scss/certificate.scss';
+.main {
+    background-image: url('../../../../../assets/certificate.svg');
+}
+
+.revoked:after {
+    background-image: url('../../../../../assets/images/expired.png');
+}

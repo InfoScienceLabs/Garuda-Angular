@@ -1,0 +1,32 @@
+<div fxLayout="row" class="m-t-16" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+  <div fxFlex="100" fxFlex.xs="100">
+      <mat-card>
+          <mat-card-title>Property Details</mat-card-title>
+          <mat-card-content>
+
+              <form>
+                  <mat-form-field class="display-block">
+                      <input matInput placeholder="Property ID" readonly [(ngModel)]="data.propertyId" name="propertyId" #propertyId="ngModel">
+                  </mat-form-field>
+                  <!-- <mat-form-field class="display-block">
+                      <input matInput placeholder="Property Type" readonly [(ngModel)]="data.propertyType" name="propertyType" >
+                  </mat-form-field> -->
+                  <mat-form-field class="display-block">
+                      <input matInput placeholder="Price" readonly [(ngModel)]="data.value" name="value">
+                  </mat-form-field>
+                  <mat-form-field class="display-block">
+                      <input matInput placeholder="Tax" readonly [(ngModel)]="data.percent" name="percent">
+                  </mat-form-field>
+                  <!-- <mat-form-field class="display-block">
+                      <input matInput placeholder="Total" readonly [(ngModel)]="data.totalvalue" name="totalvalue">
+                  </mat-form-field> -->
+                  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
+                      <button fxFlex="10" mat-raised-button fxFlex color="accent" (click)="sendPropertyToGov()">Proceed</button>
+
+                      <button fxFlex="40" mat-raised-button fxFlex color="warn" (click)="onNoClick()">Cancel</button>
+                  </div>
+              </form>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>

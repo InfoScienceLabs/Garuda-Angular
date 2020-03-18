@@ -1,0 +1,22 @@
+@import '../../../scss/marketplace.scss';
+#page-banner-area {
+    background: url(../../../assets/images/banner.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+:host {
+    display: block;
+    padding: 0px !important;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.delist {
+    position: absolute;
+    top: 90%;
+    bottom: 0px;
+    right: 14px;
+}

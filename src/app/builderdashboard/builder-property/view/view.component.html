@@ -1,0 +1,199 @@
+<!-- <ng-template [ngIf]="true">
+    <div class="display-block">
+        <div id="page-banner-area" class="page-banner">
+            <div class="page-banner-title">
+                <div class="text-center">
+                    <h2>Simple Listing</h2>
+                    <a href="#"><i class="lni-home"></i> Home</a>
+                    <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                    <span class="current">Simple Listing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="host">
+        <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <div fxFlex="75" fxFlex.xs="100">
+                <div fxLayout="row wrap" fxLayout.xs="column" class="add-grid-pro" fxLayoutAlign="space-between">
+                    <h1 class="page-header add-pro">Grid Properties</h1>
+                    <a matTooltip="Add Property" class="add-pro-maticon" mat-fab [routerLink]="['../create']">
+                        <mat-icon>add</mat-icon>
+                    </a>
+                </div>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="10">
+                    <div fxFlex="30" fxFlex.xs="50" *ngFor="let prop of dataSource" class="m-t-15">
+                        <mat-card class="example-card">
+                            <div (click)="onRowClicked(prop)">
+                                <ngx-skeleton-loader count="4" *ngIf="loading"></ngx-skeleton-loader>
+                                <ng-template [ngIf]="!loading">
+                                    <script>
+                                        debugger;
+                                    </script>
+                                    <img mat-card-image class="property-img" [src]="prop.image[0]" onError="this.src='../../../../assets/images/avatars/property-1.jpg';">
+                                </ng-template>
+                            </div>
+                            <mat-card-title class="property-title">{{prop.name}}</mat-card-title>
+
+                            <mat-card-content>
+                                <div class="adderess">
+                                    <mat-icon>location_on</mat-icon>{{prop.address.city}},{{prop.address.state}},{{prop.address.country}}
+                                </div>
+                                <div class="pricin-list">
+                                    <div class="property-price">
+                                        <span>{{prop.value | currency : 'INR': true}}</span>
+                                    </div>
+                                    <p><span>{{prop.area}} Sqft</span></p>
+                                </div>
+                                <p> Status : <span class="accent">{{this.status_msg_dict[prop.status]}}</span> </p>
+                            </mat-card-content>
+                            <form #usermarketplaceForm="ngForm">
+                                <mat-card-title>
+                                    <button mat-raised-button fxFlex color="accent" *ngIf="this.status_msg_dict[prop.status]==='Approved'" (click)="usermarketplace(prop)">List to Marketplace</button>
+
+                                </mat-card-title>
+                            </form>
+
+                        </mat-card>
+                    </div>
+                </div>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+            </div>
+
+            <div fxFlex="25" fxFlex.xs="100">
+                <h1 class="page-header">Filter</h1>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="10">
+                    <div fxFlex class="m-t-15">
+                        <mat-card>
+                            <mat-card-content>
+                                <form>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Keyword">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Property Type">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Description">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Contract">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Location">
+                                    </mat-form-field>
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <button mat-raised-button fxFlex color="accent">Search</button>
+                                    </div>
+                                </form>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template> -->
+<ng-template [ngIf]="true">
+    <div class="display-block">
+        <div id="page-banner-area" class="page-banner">
+            <div class="page-banner-title">
+                <div class="text-center">
+                    <h2>Simple Listing</h2>
+                    <a href="/"><i class="lni-home"></i> Home</a>
+                    <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                    <span class="current">Simple Listing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="host">
+        <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <div fxFlex="75" fxFlex.xs="100">
+                <div fxLayout="row wrap" fxLayout.xs="column" class="add-grid-pro" fxLayoutAlign="space-between">
+                    <h1 class="page-header add-pro">Grid Properties</h1>
+                    <a matTooltip="Add Property" class="add-pro-maticon" mat-fab [routerLink]="['../create']">
+                        <mat-icon>add</mat-icon>
+                    </a>
+                </div>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="10">
+
+                    <div fxFlex="30" fxFlex.xs="50" *ngFor="let prop of dataSource" class="m-t-15">
+                        <mat-card class="example-card">
+
+                            <div (click)="onRowClicked(prop)">
+                                <ngx-skeleton-loader count="4" *ngIf="loading"></ngx-skeleton-loader>
+                                <ng-template [ngIf]="!loading">
+                                    <script>
+                                        debugger;
+                                    </script>
+                                    <img mat-card-image class="property-img" [src]="prop.image[0]" onError="this.src='../../../../assets/images/avatars/property-1.jpg';">
+                                </ng-template>
+                            </div>
+                            <mat-card-title class="property-title">{{prop.name}}</mat-card-title>
+
+
+                            <mat-card-content>
+                                <div class="adderess">
+                                    <mat-icon>location_on</mat-icon>{{prop.address.city}},{{prop.address.state}},{{prop.address.country}}
+                                </div>
+                                <div class="pricin-list">
+                                    <div class="property-price">
+                                        <span>{{prop.value | currency : 'INR': true}}</span>
+                                    </div>
+                                    <p><span>{{prop.area}} Sqft</span></p>
+                                </div>
+                                <p> Status : <span class="accent">{{this.status_msg_dict[prop.status]}}</span> </p>
+                            </mat-card-content>
+                            <form #usermarketplaceForm="ngForm">
+                                <mat-card-title>
+
+
+                                    <button mat-raised-button fxFlex color="accent" *ngIf="this.status_msg_dict[prop.status]==='Approved'" (click)="usermarketplace(prop)">List to Marketplace</button>
+
+                                </mat-card-title>
+                            </form>
+                        </mat-card>
+                    </div>
+
+                </div>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+            </div>
+
+            <div fxFlex="25" fxFlex.xs="100">
+                <h1 class="page-header">Filter</h1>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="10">
+                    <div fxFlex class="m-t-15">
+                        <mat-card>
+                            <mat-card-content>
+                                <form>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Keyword">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Property Type">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Description">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Contract">
+                                    </mat-form-field>
+                                    <mat-form-field class="display-block">
+                                        <input matInput placeholder="Location">
+                                    </mat-form-field>
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <button mat-raised-button fxFlex color="accent">Search</button>
+                                    </div>
+                                </form>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

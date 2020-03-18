@@ -1,0 +1,96 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px" class="m-t-15">
+    <div fxFlex.gt-sm='60'>
+        <mat-card>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <mat-card-title>Type</mat-card-title>
+                <mat-icon color="primary" (click)="togglemain()">add_circle</mat-icon>
+            </div>
+            <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Apartments" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block" (click)="toggle()">add_circle</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px" *ngIf="show">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Inventory" required>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Quantity" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block" (click)="toggle_second()">add_circle</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px" *ngIf="show_second">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Amenities" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block">add_circle</mat-icon>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px" class="m-t-15" *ngIf="showmain">
+    <div fxFlex.gt-sm='60'>
+        <mat-card>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <mat-card-title>Type</mat-card-title>
+                <mat-icon color="primary">add_circle</mat-icon>
+            </div>
+            <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Villa" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block" (click)="toggleaprmnt()">add_circle</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Inventory" required>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Quantity" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block">add_circle</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Amenities" required>
+                    </mat-form-field>
+                    <mat-icon class="display-block">add_circle</mat-icon>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px" class="m-t-15">
+    <div fxFlex.gt-sm='60'>
+        <mat-card>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <mat-card-title>Document</mat-card-title>
+                <mat-icon color="primary">add_circle</mat-icon>
+            </div>
+            <mat-card-content>
+                <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="30px">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Name" required>
+                    </mat-form-field>
+                    <div fxLayout="row wrap">
+                        <div class="col-12">
+                            <input type="file" class="dropify">
+                        </div>
+                    </div>
+                    <mat-radio-group fxLayout="row" aria-label="Select an option">
+                        <mat-radio-button value="1">Visible To Everyone</mat-radio-button>
+                        <mat-radio-button value="2">Paid Users</mat-radio-button>
+                    </mat-radio-group>
+                    <button class="display-block" mat-raised-button color="accent">Save</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

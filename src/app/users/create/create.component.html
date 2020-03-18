@@ -1,0 +1,115 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="m-t-15">
+    <div fxFlex.gt-sm='50'>
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="User Details">
+                    <br><br>
+                    <form #frm="ngForm" (ngSubmit)="create_user(frm)">
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Name" name="name" [(ngModel)]="user.name" #name="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput [matDatepicker]="picker" [max]="current_date" placeholder="Date of Birth" name="dob" [(ngModel)]="user.dob" #dob="ngModel" (click)="picker.open()" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker [disabled]="false" startView="multi-year" [startAt]="startDate" #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Phone Number" maxlength=10 pattern="^[0-9]*$" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Email Id" name="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="user.email" #email="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Password" type="password" name="password" ngModel required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput type="password" placeholder="Confirm Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" Street Name" name="street" [(ngModel)]="address.street" pattern="^[a-zA-Z ]*$" #street="ngModel" required>
+                            <mat-hint>Not more then 100 characters long.</mat-hint>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <mat-form-field fxFlex>
+                                <input matInput placeholder="City" name="city" pattern="^[a-zA-Z ]*$" [(ngModel)]="address.city" #city="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field fxFlex>
+                                <input matInput placeholder="State" name="state" [(ngModel)]="address.state" pattern="^[a-zA-Z ]*$" #state="ngModel" required>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <mat-form-field fxFlex>
+                                <input matInput placeholder="Postal Code" name="zip" maxlength="6" [(ngModel)]="address.zip" #zip="ngModel" pattern="[1-9][0-9]*" required>
+                            </mat-form-field>
+                            <mat-form-field fxFlex>
+                                <input matInput placeholder="Country" name="country" [(ngModel)]="address.country" #country="ngModel" required>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-form-field class="display-block">
+                            <mat-select placeholder="Role" [(ngModel)]="user.roleId" name="roleId" #roleId="ngModel">
+                                <mat-option *ngFor="let roles of role" [value]="roles.value">
+                                    {{roles.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="display-block" *ngIf="frm.value.roleId ==='builder'">
+                            <input matInput placeholder="Builder Name" [matAutocomplete]="auto" name="orgId" #orgId="ngModel" [(ngModel)]="user.orgId" (ngModelChange)="get_orgname($event)">
+                        </mat-form-field>
+                        <!-- <input matInput placeholder="Builder Name" [matAutocomplete]="auto" [(ngModel)]="orgId"
+                                            (ngModelChange)="search_orgname($event)" #orgId="ngModel" name="orgId" required> -->
+                        <!-- <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let builder of builder_array" [value]="builder.id">
+                                            {{builder.name}}
+                                        </mat-option>
+                                    </mat-autocomplete> -->
+
+                        <!-- <ng-container *ngFor="let admin of builder.admin; let i=index" [ngModelGroup]="admin + 'i'"> -->
+
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of orgname_array" [value]="option['_id']">
+                                {{option['name']}} - {{option['email']}}
+                            </mat-option>
+                        </mat-autocomplete>
+
+                        <!-- </ng-container> -->
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                            <button mat-raised-button color="warn" type="submit">Reset</button>
+                            <button mat-raised-button color="primary" [disabled]="frm.invalid" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </mat-tab>
+                <!-- <mat-tab label="Property Details">
+                    <ng-container *ngIf="!isNew">
+                        <div class="container-card">
+                            <div class="row">
+                                <div class="col-4" *ngFor="let property of dataSource">
+                                    <mat-card class="example-card">
+                                        <img mat-card-image [src]="property.image[0]" onError="this.src='../../../../assets/images/avatars/propertyImage.jpg';">
+
+                                        <mat-card-title>{{property.name}}</mat-card-title>
+
+                                        <mat-card-content>
+                                            <p>Property Id: {{property.propertyId}}</p>
+                                            <p>Area: {{property.area}} (sqft)</p>
+                                            <p>Value: {{property.value | currency : 'INR': true}}</p>
+                                            <p>Address: {{property.address.city}}, {{property.address.state}}</p>
+                                            <p> Status : {{property.status}}</p>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <button mat-button (click)="onRowClicked(property)">PROPERTY VIEW</button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                            </mat-paginator>
+                        </div>
+                    </ng-container>
+                </mat-tab> -->
+
+            </mat-tab-group>
+        </mat-card>
+    </div>
+</div>

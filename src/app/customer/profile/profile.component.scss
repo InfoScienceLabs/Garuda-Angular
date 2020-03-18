@@ -1,0 +1,40 @@
+@import '../../../scss/table.scss';
+.host-display {
+    display: block;
+    padding: 0 6rem;
+}
+
+.profile-image {
+    background: linear-gradient(90deg, #00d9bf, #00d977);
+    height: 180px;
+}
+
+.profile-image-avatar {
+    margin-top: -80px;
+    margin-bottom: 20px;
+}
+
+.profile-image-avatar>.avatar {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+}
+
+.mat-card-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.mat-card-subtitle {
+    color: rgba(0, 0, 0, .54);
+}
+
+.mat-card-content,
+.mat-card-subtitle {
+    font-size: 14px;
+}
+
+.example-box {
+    padding: 1rem 0;
+}

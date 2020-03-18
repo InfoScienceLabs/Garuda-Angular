@@ -1,0 +1,47 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('../assets/images/bg-01.jpg');">
+        <mat-card class="wrap-login100">
+            <div class="m-b-15" fxLayout="row" fxLayoutAlign="center center">
+                <img src="../../../assets/garuda_login.svg" width="200px">
+            </div>
+            <mat-card-content>
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="First & Last Name" type="text" formControlName="name" lowercase required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Phone number" [maxlength]=10 type="text" formControlName="phone" required>
+                        <mat-error *ngIf="formErrors.password">{{formErrors.phone}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput [matDatepicker]="picker" [max]="current_date" formControlName="dob" placeholder="Date of Birth">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker [disabled]="false" startView="multi-year" [startAt]="startDate" #picker color="accent-50"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Email" type="text" formControlName="email" required>
+                        <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Password" type="password" formControlName="password" required>
+                        <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+                    </mat-form-field>
+
+                    <div class="m-b-15" fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-raised-button color="purple-400" [disabled]="!registerForm.valid || submitted">Submit</button>
+                        <mat-error *ngIf="error" class="alert alert-danger">{{error}}</mat-error>
+                    </div>
+                    <div class="w-100">
+                        <mat-spinner *ngIf="loading" [diameter]="70"></mat-spinner>
+                    </div>
+
+                </form>
+                <div class="m-b-15 policy" fxLayout="column" fxLayoutAlign="center center">
+                    <p>By joining you agree to the Terms and Conditions, Privacy Policy and Cookie Policy</p>
+                    <p><strong>Already have an account?</strong> </p><a class="redirect signup" [routerLink]="['/login']">Login</a>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+</div>

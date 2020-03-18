@@ -1,0 +1,58 @@
+@import '../../../../scss/marketplace.scss';
+#page-banner-area {
+    background: url(../../../../assets/images/single.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+:host {
+    display: block;
+    padding: 0px !important;
+}
+
+.delist {
+    position: absolute;
+    top: 90%;
+    bottom: 0px;
+    right: 14px;
+}
+
+.listing-own-way {
+    position: relative;
+    top: 10px;
+    right: 12px;
+}
+
+// .example-card.project {
+//     .overlay {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         height: 100%;
+//         width: 100%;
+//         background: rgba(0, 0, 0, 0.7);
+//         opacity: 0;
+//         visibility: hidden;
+//         transition: all 0.25s;
+//         .overlay-content {
+//             padding: 20px 24px 24px;
+//             height: 100%;
+//             .overlay-actions {
+//                 .mat-icon-button {
+//                     margin-right: 16px;
+//                     background: #fff;
+//                     color: #666;
+//                     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+//                 }
+//             }
+//         }
+//     }
+//     &:hover {
+//         .overlay {
+//             visibility: visible;
+//             opacity: 1;
+//         }
+//     }
+// }

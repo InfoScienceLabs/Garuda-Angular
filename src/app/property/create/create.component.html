@@ -1,0 +1,305 @@
+<!-- <div class="p-0">
+    <div class="host">
+        <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <div fxFlex="100">
+                <form #propertyForm="ngForm">
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Create Property</h1>
+                        <mat-card>
+                            <mat-card-content>
+
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Property Name" name="name" [(ngModel)]="property.name"
+                                        #name="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Property Value" name="value" [(ngModel)]="property.value"
+                                        #value="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Area (In Sqft)" name="area" [(ngModel)]="property.area"
+                                        #area="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <textarea matInput placeholder="Property Details" (ngModelChange)="countingCharacters($event)"
+                                        name="description" [(ngModel)]="property.description" #description="ngModel"
+                                        required></textarea>
+                                </mat-form-field>
+
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Owner Details</h1>
+                        <mat-card>
+
+                            <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+
+                                
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Owner Name" [matAutocomplete]="auto" [(ngModel)]="owner.id"
+                                        (ngModelChange)="search_name($event)" #id="ngModel" name="id" required>
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of name_array" [value]="option['_id']">
+                                            {{option['name']}} - {{option['email']}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+
+                                <mat-form-field class="display-block">
+                                    <mat-select placeholder="Owner Type" [(ngModel)]="owner.type" name="type" #type="ngModel"
+                                        (ngModelChange)="staticValueForStake(i,owner.type)">
+                                        <mat-option value="Sole propertiership">Sole propertiership</mat-option>
+                                        <mat-option value="CoOwn" [disabled]="true">CoOwn (Coming Soon)</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Stake (in %)" [readOnly]="disable_stake" name="stake"
+                                        [(ngModel)]="owner.stake" #stake="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput [matDatepicker]="picker" [max]="current_date" name="buyDate"
+                                        [(ngModel)]="owner.buyDate" #buyDate="ngModel" placeholder="Listed Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker [disabled]="false" #picker></mat-datepicker>
+                                </mat-form-field>
+
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Address Details</h1>
+                        <mat-card>
+                            <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" Street" [(ngModel)]="property.address.street" name="street"
+                                        #street="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" city" [(ngModel)]="property.address.city" name="city"
+                                        #city="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" State" [(ngModel)]="property.address.state" name="state"
+                                        #state="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" Country" name="country" [(ngModel)]="property.address.country"
+                                        #country="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" ZIP" name="zip" [(ngModel)]="property.address.zip"
+                                        #zip="ngModel" required>
+                                </mat-form-field>
+
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Property Images</h1>
+                        <mat-card>
+                            <mat-card-content *ngFor="let image of property.image ; let i = index">
+                                <img class='img-hover' [src]="image" alt="Photo of a Shiba Inu" width="100">
+                                <div class="middle">
+                                    <div class="text" (click)="remove(i)">delete</div>
+                                </div>
+
+                                <mat-divider [inset]="true"></mat-divider>
+                                <mat-divider></mat-divider>
+                                <mat-label>Property Documnets</mat-label>
+                                <mat-list-item *ngFor="let doc of property.docs; let i = index">
+                                    <img [src]=doc style="width: 150px; height: 100px;">
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-card-content>
+                            <div class="display-block">
+                                <input ##imageInput type="file" accept="image/*" (change)="processWebImage($event)">
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div class="display-block m-t-15">
+                        <ng-container *ngFor="let admin of property.admin ; let i = index" [ngModelGroup]="'admin'+i">
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Admin" [matAutocomplete]="auto" [(ngModel)]="admin[i]"
+                                    (ngModelChange)="search_name($event)" #admin[i]="ngModel" name="admin[i]" required>
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event)">
+                                    <mat-option *ngFor="let option of name_array" [value]="option['_id']">
+                                        {{option['name']}} - {{option['email']}}
+                                    </mat-option>
+                                </mat-autocomplete>
+
+
+                            </mat-form-field>
+                        </ng-container>
+                    </div>
+                </form>
+
+                <div class="display-block m-t-15">
+                    <button mat-raised-button color="primary" (click)="addProperty()" *ngIf="isNew" [disabled]="!propertyForm.valid">Create
+                        Property</button>
+                    <button mat-raised-button color="accent" (click)="updateProperty()" *ngIf="!isNew" [disabled]="!propertyForm.valid">Update
+                        Property</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+<form #propertyForm="ngForm">
+    <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="10px">
+        <div fxFlex="49">
+            <div class="display-block m-t-15">
+                <mat-card class="mat-elevation-z2">
+                    <mat-card-title>Property Details</mat-card-title>
+                    <mat-card-content>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Property Name" name="name" [(ngModel)]="property.name" #name="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                                <mat-select placeholder="Property Type" [(ngModel)]="property.propertyType" name="propertyType" #propertyType="ngModel">
+                                            
+                                            <mat-option value="Commercial">Commercial</mat-option>
+                                            <mat-option value="Residential">Residential</mat-option>
+                                            <mat-option value="Agricultural">Agricultural</mat-option>
+                                            <mat-option value="Others">Others</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Property Value" name="value" [(ngModel)]="property.value" #value="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Area (In Sqft)" name="area" [(ngModel)]="property.area" #area="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <textarea matInput rows="4" placeholder="Property Details" (ngModelChange)="countingCharacters($event)" name="description" [(ngModel)]="property.description" #description="ngModel" required></textarea>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div fxFlex="49">
+            <div class="display-block m-t-15">
+                <mat-card class="mat-elevation-z2">
+                    <mat-card-title>Owner Details</mat-card-title>
+                    <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Owner Name" [matAutocomplete]="auto" [(ngModel)]="owner.id" (ngModelChange)="search_name($event)" #id="ngModel" name="id" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of name_array" [value]="option['_id']">
+                                    {{option['name']}} - {{option['email']}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <mat-select placeholder="Owner Type" [(ngModel)]="owner.type" name="type" #type="ngModel" (ngModelChange)="staticValueForStake(i,owner.type)">
+                                <mat-option value="Sole propertiership">Sole propertiership</mat-option>
+                                <mat-option value="CoOwn" [disabled]="true">CoOwn (Coming Soon)</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder="Stake (in %)" [readOnly]="disable_stake" name="stake" [(ngModel)]="owner.stake" #stake="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput [matDatepicker]="picker" [max]="current_date" name="buyDate" [(ngModel)]="owner.buyDate" #buyDate="ngModel" placeholder="Listed Date" (click)="picker.open()">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker [disabled]="false" #picker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="10px" class="m-t-15">
+        <div fxFlex="99">
+            <div class="display-block m-t-15">
+                <mat-card class="mat-elevation-z2">
+                    <mat-card-title>Address Details</mat-card-title>
+                    <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" Street" [(ngModel)]="property.address.street" name="street" #street="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" city" [(ngModel)]="property.address.city" name="city" #city="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" State" [(ngModel)]="property.address.state" name="state" #state="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" Country" name="country" [(ngModel)]="property.address.country" #country="ngModel" required>
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                            <input matInput placeholder=" ZIP" name="zip" [(ngModel)]="property.address.zip" #zip="ngModel" required>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div fxFlex="99">
+            <div class="display-block m-t-15">
+                <mat-card class="mat-elevation-z2">
+                    <mat-card-title>Property Images</mat-card-title>
+                    <div>
+                        <div fxFlex.gt-sm='50'>
+                            <h4>Images <small>(JPEG,JPG,PNG)</small></h4>
+                        </div>
+                        <div fxFlex.gt-sm='50' fxLayoutAlign="end center">
+                            <input type="file" accept="image/x-png,image/jpg,image/jpeg" class="custom-file-input" (change)="processWebImage($event)" required>
+                        </div>
+                    </div>
+
+                    <mat-card-content>
+                        <div class='display-block-dropify'>
+                            <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutAlign="start center">
+                                <div *ngFor="let image of property.image; let i = index">
+                                    <img *ngIf="image" [src]="image" style="width: 100px; height: 100px; padding: 15px;" />
+                                    <span *ngIf="image" class="remove"><mat-icon (click)="removeImage(i)">remove_circle</mat-icon> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-progress-bar mode="indeterminate" *ngIf="loader"></mat-progress-bar>
+                </mat-card>
+            </div>
+        </div>
+        <div fxFlex="99">
+            <div class="display-block m-t-15">
+                <mat-card class="mat-elevation-z2">
+                    <mat-card-title>Property Documnets</mat-card-title>
+                    <div>
+                        <div fxFlex.gt-sm='50'>
+                            <h4>Documents <small>(PDF,WORD)</small></h4>
+                        </div>
+                        <div fxFlex.gt-sm='50' fxLayoutAlign="end center">
+                            <input type="file" accept=".pdf,.doc" class="custom-file-input" (change)="processWebDocs($event)" required>
+                        </div>
+                    </div>
+                    <mat-card-content>
+                        <div class='display-block-dropify'>
+                            <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutAlign="start center">
+                                <div *ngFor="let doc of property.docs; let d = index">
+                                    <img *ngIf="docimages" [src]="doc" style="width: 100px; height: 100px; padding: 15px;" />
+                                    <span *ngIf="docimages" class="remove"><mat-icon (click)="removedocImage(d)">remove_circle</mat-icon> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-progress-bar mode="indeterminate" *ngIf="load"></mat-progress-bar>
+                </mat-card>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <div class="m-t-15">
+                <button mat-raised-button color="primary" (click)="addProperty()" *ngIf="isNew" [disabled]="!propertyForm.valid">Create
+                                                Property</button>
+                <button mat-raised-button color="accent" (click)="updateProperty()" *ngIf="!isNew" [disabled]="!propertyForm.valid">Submit Property</button>
+            </div>
+        </div>
+    </div>
+</form>

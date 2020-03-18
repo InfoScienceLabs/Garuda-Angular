@@ -1,0 +1,92 @@
+<div fxLayout="row wrap" class="form-group">
+
+    <div fxFlex.gt-sm="50" class="divide">
+        <mat-card>
+            <mat-card-title>Builder Details</mat-card-title>
+            <mat-card-content>
+                <form #frm="ngForm" (ngSubmit)="create_builder(frm)">
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder=" Company Name" name="name" [(ngModel)]="builder.name" #name="ngModel"
+                            required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input type="tel" matInput placeholder=" GST Number" name="gst" [(ngModel)]="builder.gst" #gst="ngModel"
+                            required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder=" Phone Number" name="phone" [(ngModel)]="builder.phone" #phone="ngModel"
+                            required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder="Email Id (Login Email)" name="email" [(ngModel)]="builder.email"
+                            #email="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder=" New Password" type="password" name="password" [(ngModel)]="builder.password"
+                            #password="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field class="display-block">
+                        <input matInput placeholder=" Street Name" name="street" [(ngModel)]="builder.address.street"
+                            #street="ngModel" required>
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutGap="30px">
+                        <mat-form-field fxFlex>
+                            <input matInput placeholder="City" name="city" [(ngModel)]="builder.address.city" #city="ngModel"
+                                required>
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <input matInput placeholder="State" name="state" [(ngModel)]="builder.address.state" #state="ngModel"
+                                required>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="30px">
+                        <mat-form-field fxFlex>
+                            <input matInput placeholder="Postal Code" name="zip" [(ngModel)]="builder.address.zip" #zip="ngModel"
+                                required>
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <input matInput placeholder="Country" name="country" [(ngModel)]="builder.address.country"
+                                #country="ngModel" required>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                        <button mat-raised-button color="warn" type="submit">Reset</button>
+                        <button mat-raised-button color="primary" (click)="addBuilder(frm)" [disabled]="frm.invalid"
+                            type="submit">Submit</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex.gt-sm="50" class="divide">
+        <mat-card>
+            <mat-card-title>Admin Details</mat-card-title>
+            <mat-card-content>
+                <form #frm="ngForm">
+                    <ng-container *ngFor="let admin of builder.admin; let i=index" [ngModelGroup]="admin + 'i'">
+                        <mat-form-field class="display-block">
+                        <input matInput placeholder="User Name" [matAutocomplete]="auto" [(ngModel)]="builder.admin"
+                            (ngModelChange)="search_name($event)" #admin="ngModel" name="admin" 
+                            required>
+                        <mat-autocomplete #auto="matAutocomplete">
+                           <mat-option *ngFor="let option of name_array" [value]="option['_id']">
+                               {{option['name']}} - {{option['email']}}
+                           </mat-option>
+                       </mat-autocomplete>
+                    </mat-form-field>
+                    </ng-container>
+                    <div fxLayout="row" fxLayoutGap="30px">
+                        <div fxFlex>
+                            <a [routerLink]="['/admin/users/create']">Create New User ?</a>
+                        </div>
+
+                        <div fxFlex>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+</div>

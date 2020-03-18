@@ -1,0 +1,48 @@
+@import '../../../scss/marketplace.scss';
+.singleproperty {
+    display: block;
+    padding: 5px 16px 16px 16px;
+}
+
+.networkdialog {
+    .mat-dialog-container {
+        //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-top: 5px solid #4064d7;
+    }
+    .mat-card-title {
+        color: #4064d7;
+    }
+}
+
+.mycontracts {
+    .mat-dialog-container {
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+}
+
+#page-banner-area {
+    background: url(../../../assets/images/banner.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.example-header-image-doc {
+    background-image: url(../../../assets/images/avatars/connection.png);
+    background-size: cover;
+}
+
+.example-header-image-property {
+    background-image: url(../../../assets/images/avatars/notes.png);
+    background-size: cover;
+}
+
+.example-header-image-crtf {
+    background-image: url(../../../assets/images/avatars/winner.png);
+    background-size: cover;
+}
+
+.example-header-image-doc-tax {
+    background-image: url(../../../assets/images/avatars/tax.png);
+    background-size: cover;
+}

@@ -1,0 +1,90 @@
+<div class="host">
+    <div class="display-block">
+        <div class="docs-example-viewer-wrapper">
+            <div class="docs-example-viewer-title" fxFlexAlign="baseline">
+                <div class="docs-example-viewer-title-spacer">
+                    Filters
+                </div>
+            </div>
+            <div class="docs-example-viewer-body">
+                <form>
+                    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="50px">
+                        <mat-form-field fxFlex>
+                            <input type="text" matInput placeholder="Transaction Id" />
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <mat-label>Transaction Type</mat-label>
+                            <mat-select>
+                                <mat-option value="option1">Option 1</mat-option>
+                                <mat-option value="option2">Option 2</mat-option>
+                                <mat-option value="option3">Option 3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <input type="text" matInput placeholder="Status" />
+                        </mat-form-field>
+                        <div fxFlexAlign="center" fxFlex>
+                            <button mat-raised-button type="submit"> <mat-icon>filter_list</mat-icon> Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="docs-example-viewer-wrapper table-margintop ">
+        <div class="docs-example-viewer-title" fxFlexAlign="baseline">
+            <div class="docs-example-viewer-title-spacer">
+                Transaction</div>
+        </div>
+        <div>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+                <ng-container matColumnDef="propertyImg">
+                    <th mat-header-cell *matHeaderCellDef> Property Image </th>
+                    <td mat-cell *matCellDef="let property">
+                        <img src="./../../../assets/images/avatars/thumbimg.jpg" width="50">
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Transaction Id">
+                    <th mat-header-cell *matHeaderCellDef> Transaction Id </th>
+                    <td mat-cell *matCellDef="let transaction" class="cursor-p" matTooltip="Click to view: {{transaction.id}}"> {{transaction.id | slice:0:6}}... </td>
+                </ng-container>
+                <ng-container matColumnDef="Transaction Type">
+                    <th mat-header-cell *matHeaderCellDef> Transaction Type</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.transactionType}} </td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address </th>
+                    <td mat-cell *matCellDef="let transaction" class="cursor-p" matTooltip="Click to view: {{transaction.address}}"> {{transaction.address | slice:0:6}}... </td>
+                </ng-container>
+                <ng-container matColumnDef="public?">
+                    <th mat-header-cell *matHeaderCellDef> Public</th>
+                    <td mat-cell *matCellDef="let transaction;  let i = index" class="cursor-p" (click)="view_public_network(i,transaction,transaction.public)" matTooltip="Click to view: {{transaction.public && transaction.public.hash}}"> {{transaction.public && transaction.public.hash | slice:0:6}}... </td>
+                </ng-container>
+                <ng-container matColumnDef="private?">
+                    <th mat-header-cell *matHeaderCellDef> Private</th>
+                    <td mat-cell *matCellDef="let transaction;  let i = index" class="cursor-p" (click)="view_private_network(i,transaction,transaction.private)" matTooltip="Click to view: {{transaction.private && transaction.private.hash}}"> {{transaction.private && transaction.private.hash | slice:0:6}}... </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status</th>
+                    <td mat-cell *matCellDef="let transaction" class="cursor-p" [ngClass]="{'color-green': transaction.status === 'Success', 'color-yellow':transaction.status === 'In_Progress'}">
+                        {{transaction.status}}
+                    </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="scope?">
+                            <th mat-header-cell *matHeaderCellDef> Scope</th>
+                            <td mat-cell *matCellDef="let transaction" matTooltip="Click to view: {{transaction.scope}}"> {{transaction.scope | slice:0:6}}... </td>
+                        </ng-container> -->
+                <ng-container matColumnDef="sender">
+                    <th mat-header-cell *matHeaderCellDef> Sender</th>
+                    <td mat-cell *matCellDef="let transaction" class="cursor-p" matTooltip="Click to view: {{transaction.sender}}"> {{transaction.sender | slice:0:6}}... </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row color="accent" *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [length]="pageIndex" [pageSize]="10" [pageSizeOptions]="[pageSize]" (page)="pageEvent = gettransaction($event)">
+
+            </mat-paginator>
+        </div>
+    </div>
+</div>

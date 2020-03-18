@@ -1,0 +1,23 @@
+@import '../../scss/table.scss';
+.color-green {
+    color: green;
+}
+
+.color-yellow {
+    color: rgb(253, 82, 15);
+}
+
+.networkdialog {
+    .mat-dialog-container {
+        //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-top: 5px solid #4064d7;
+    }
+    .mat-card-title {
+        color: #4064d7;
+    }
+}
+
+.host {
+    display: block;
+    padding: 1rem;
+}

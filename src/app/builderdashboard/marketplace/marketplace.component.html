@@ -1,0 +1,174 @@
+<mat-tab-group class="display-block" (selectedTabChange)="getUserMarketplace($event,page)" mat-align-tabs="center">
+    <mat-tab  label="World Marketplace" >
+      <ng-template [ngIf]="true">
+        <div class="host">
+          <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <div fxFlex="70" fxFlex.xs="100">
+              <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                fxLayoutGap.xs="10">
+                <div fxFlex="30" fxFlex.xs="50" *ngFor="let prop of global_dataSource" class="m-t-15">
+                  <mat-card class="example-card">
+                    <div (click)="onRowClicked(prop)">
+  
+                      <ng-template [ngIf]="!loading">
+                        <script>
+                          debugger;
+                        </script>
+                        <img mat-card-image class="property-img" [src]="prop.image[0]" onError="this.src='../../../../assets/images/avatars/property-1.jpg';">
+                      </ng-template>
+                    </div>
+                    <mat-card-title class="property-title">{{prop.name}}</mat-card-title>
+  
+                    <mat-card-content>
+                      <div class="adderess" *ngIf="prop.address">
+                        <mat-icon>location_on</mat-icon>{{prop.address.city}},{{prop.address.state}},{{prop.address.country}}
+                      </div>
+                      <div class="pricin-list">
+                        <div class="property-price">
+                          <span>{{prop.value | currency : 'INR': true}}</span>
+                        </div>
+                        <p><span>{{prop.area}} Sqft</span></p>
+                      </div>
+                      <p> Status : <span class="accent">{{this.status_msg_dict[prop.status]}}</span>
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+  
+                        <button mat-button [routerLink]="['/builder/marketplace/view/',prop.propertyId]">PROPERTY VIEW</button>
+                        <!-- <tr mat-row [routerLink]="['/admin/marketplace/view',row.propertyId]" *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                    </mat-card-actions>
+  
+                  </mat-card>
+                </div>
+              </div>
+              <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+              </mat-paginator>
+            </div>
+  
+            <div fxFlex="25" fxFlex.xs="100">
+              <h1 class="page-header">Filter</h1>
+              <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                fxLayoutGap.xs="10">
+                <div fxFlex class="m-t-15">
+                  <mat-card>
+                    <mat-card-content>
+                      <form>
+                        <mat-form-field class="display-block">
+                          <input matInput placeholder="Keyword">
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                          <input matInput placeholder="Property Type">
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                          <input matInput placeholder="Description">
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                          <input matInput placeholder="Contract">
+                        </mat-form-field>
+                        <mat-form-field class="display-block">
+                          <input matInput placeholder="Location">
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                          <button mat-raised-button fxFlex color="accent">Search</button>
+                        </div>
+                      </form>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </ng-template>
+    
+    </mat-tab>  
+    <mat-tab label="My Marketplace" >
+        <ng-template [ngIf]="true">
+          <div class="host"> 
+            <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px">
+              <div fxFlex="70" fxFlex.xs="100">
+               <div fxLayout="row wrap" fxLayout.xs="column" class="add-grid-pro" fxLayoutAlign="space-between">
+      
+                </div>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                  fxLayoutGap.xs="10">
+                  <div fxFlex="30" fxFlex.xs="50" *ngFor="let prop of user_dataSource" class="m-t-15">
+                    <mat-card class="example-card">
+                      <div (click)="onRowClicked(prop)">
+    
+                        <ng-template [ngIf]="!loading">
+                          <script>
+                            debugger;
+                          </script>
+                          <img mat-card-image class="property-img" [src]="prop.image[0]" onError="this.src='../../../../assets/images/avatars/property-1.jpg';">
+                        </ng-template>
+                      </div>
+                      <mat-card-title class="property-title">{{prop.name}}</mat-card-title>
+    
+                      <mat-card-content>
+                        <div class="adderess" *ngIf="prop.address">
+                          <mat-icon>location_on</mat-icon>{{prop.address.city}},{{prop.address.state}},{{prop.address.country}}
+                        </div>
+                        <div class="pricin-list">
+                          <div class="property-price">
+                            <span>{{prop.value | currency : 'INR': true}}</span>
+                          </div>
+                          <p><span>{{prop.area}} Sqft</span></p>
+                        </div>
+                        <p> Status : <span class="accent">{{this.status_msg_dict[prop.status]}}</span>
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+  
+                          <button mat-button [routerLink]="['/builder/marketplace/view/',prop.propertyId]">PROPERTY VIEW</button>
+                          <!-- <tr mat-row [routerLink]="['/admin/marketplace/view',row.propertyId]" *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                      </mat-card-actions>
+    
+                    </mat-card>
+                  </div>
+                </div>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+              </div>
+    
+              <div fxFlex="25" fxFlex.xs="100">
+                <h1 class="page-header">Filter</h1>
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                  fxLayoutGap.xs="10">
+                  <div fxFlex class="m-t-15">
+                    <mat-card>
+                      <mat-card-content>
+                        <form>
+                          <mat-form-field class="display-block">
+                            <input matInput placeholder="Keyword">
+                          </mat-form-field>
+                          <mat-form-field class="display-block">
+                            <input matInput placeholder="Property Type">
+                          </mat-form-field>
+                          <mat-form-field class="display-block">
+                            <input matInput placeholder="Description">
+                          </mat-form-field>
+                          <mat-form-field class="display-block">
+                            <input matInput placeholder="Contract">
+                          </mat-form-field>
+                          <mat-form-field class="display-block">
+                            <input matInput placeholder="Location">
+                          </mat-form-field>
+                          <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button fxFlex color="accent">Search</button>
+                          </div>
+                        </form>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  
+  
+  

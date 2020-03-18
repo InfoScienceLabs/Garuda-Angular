@@ -1,0 +1,151 @@
+<div *ngIf="contracts_show!='There is no Contract made for this property,'" class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+    <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="100%">
+            <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+            
+                <swiper class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled">
+                    
+                    <div *ngFor="let contract of contracts_show.slice().reverse() ; let i = index" class="swiper-slide">
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+
+                            <div *ngFor="let buyer_details of contract.buyer">
+                                <mat-dialog-content class="mat-typography">
+                                    <div class="main scrollbar" id="style-3">
+                                        <div class="container">
+                                            <form>
+                                                <div>
+                                                    <div fxLayout="row" fxLayoutAlign="center">
+                                                        <h1>SALE OF LAND CONTRACT</h1>
+                                                    </div>
+                                                    <p>THE BUYER {{buyer_details.name}} from {{buyer_details.address.street}}, {{buyer_details.address.city}}, {{buyer_details.address.state}}, 
+                                                        {{buyer_details.address.country}}, {{buyer_details.address.zip}}
+                                                    </p>
+                                                    <p>AGREES TO PURCHASE the land described in this Contract and all improvements ("the Property") with vacant possession unless otherwise provided in the conditions together with the chattels (if any) described
+                                                        in this Contract at the price and on the other terms and conditions set out in this Contract.
+                                                    </p>
+                                                    <ol type="a">
+                                                        <li>The Property: The land situated at and known as {{contract.property.address.street}} ,{{contract.property.address.city}}, {{contract.property.address.state}}, {{contract.property.address.zip}},{{contract.property.address.country}}.
+                                                            The unique identifier for the property is <strong>{{contract.propertyId}}</strong>.
+                                                        </li>
+                                                        <li> All fixtures & fittings and plant & equipment, which are included in the Purchase Price.
+                                                        </li>
+                                                        <li> Purchase Price: <strong>{{contract.price_details.amount_paid}}</strong> Rs.</li>
+                                                        <li>Manner of Payment: A deposit of [[Deposit Amount in Ether]] ether shall be paid within [[Initial Deposit Number of Days]] days of acceptance to be held by [[Deposit Holder]]. The balance of the Purchase
+                                                            Price shall be paid on the Settlement Date, [[Settlement Date]].
+                                                        </li>
+                                                        <li>This Contract is conditional upon Finance Approval being obtained before the End Time
+                                                        </li>
+                                                        <li>The Buyer must:
+                                                            <ol type="a">
+                                                                <li> apply for Finance Approval to at least one Lender using, if required by the Lender, the Property as security;
+                                                                </li>
+                                                                <li> use best endeavours to obtain Finance Approval and if required by the Seller provide evidence in writing of the making of an application in good faith for Finance Approval, any loan offer
+                                                                    made, and the reasons for the Buyer not accepting any loan offer made; and</li>
+                                                                <li>on receipt of the Finance Approval notify the Seller whereupon the condition in the paragraph above will then be satisfied.</li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>If on or before the End Time the Buyer is notified by the Lender that the application for Finance Approval is rejected or no Finance Approval is obtained, then the Buyer must notify the Seller of
+                                                            such rejection or non receipt as the case may be.</li>
+                                                        <li> If the Buyer has not waived the Finance Approval condition and communicated the waiver to the Seller prior to the End Time, then if:
+                                                            <ol type="a">
+                                                                <li> the Finance Approval condition is not satisfied; and
+                                                                </li>
+                                                                <li> the Buyer has complied with its obligations</li>
+                                                            </ol>
+                                                            THEN this Contract shall be deemed to have come to an end without the necessity of either party giving to the other notice to that effect. The Deposit and all other monies (if any) paid pursuant to this Contract shall then be refunded to the Buyer (less
+                                                            all bank and government charges) and there shall be no further claim under this Contract by either party in law or in equity against the other.
+                                                        </li>
+                                                        <li>If the Buyer fails to notify the Seller in accordance with paragraphs 6(c) or 7 the Buyer is in default and the Seller may without prejudice to any other remedies and rights available immediately
+                                                            terminate the Contract by notice in writing to the Buyer.
+                                                        </li>
+                                                        <li>
+                                                            This clause shall operate for the benefit of both the Seller and the Buyer except that the Buyer by waiving the Buyer’s rights pursuant to this clause at any time before the End Time shall be deemed to have received Finance Approval.
+                                                        </li>
+                                                        <!-- <li>
+                                                            In this Contract the following shall apply:
+                                                            <ol type="a">
+                                                                <li> "Finance Approval" means an offer to lend made by the Lender on reasonable terms and conditions or an approval of a finance application by the Lender to the Buyer, by the End Time for a loan
+                                                                    of an amount not less than the Amount of Loan shown below. An approval that is subject to the Lender’s usual terms and conditions shall be deemed to be Finance Approval.
+                                                                </li>
+                                                                <li>
+                                                                    "Lender" means either the Lender nominated below (if any) or any other Lender acceptable to the Buyer.
+                                                                </li>
+                                                                <li>
+                                                                    Lender: [[Name of Lender]]
+                                                                </li>
+                                                                <li>End Time: 4.00 pm on [[Lending Date]]</li>
+                                                                <li>Amount of Loan: [[Amount of Loan in Ether]] ether</li>
+                                                                <li>Initials of Buyer(s): [[Initials of Buyer]]</li>
+                                                            </ol>
+                                                        </li> -->
+                                                        <li>
+                                                            Acceptance of this offer shall be sufficiently communicated to the Buyer if notification shall be given by the Seller to the Buyer that the acceptance has been signed by the Seller under this Contract.
+                                                        </li>
+                                                        <li>
+                                                            The General Conditions are incorporated into this Contract so far as they are not varied by or inconsistent with the express terms of this Contract.
+                                                        </li>
+                                                        <li>
+                                                            The Special Conditions printed below this line apply to this Contract. [[Special Conditions]]
+                                                        </li>
+                                                        <div *ngFor="let buyer_details of contract.buyer">
+                                                                <li>THE BUYER <br />{{buyer_details.name}} from {{buyer_details.address.street}}, {{buyer_details.address.city}}, {{buyer_details.address.state}}, 
+                                                                    {{buyer_details.address.country}}, {{buyer_details.address.zip}}
+                                                                </li>
+                                                            </div>
+
+                                                        <div *ngFor="let seller_details of contract.seller">
+                                                            <li>THE SELLER <br />{{seller_details.name}} from {{seller_details.address.street}}, {{seller_details.address.city}}, {{seller_details.address.state}}, 
+                                                                {{seller_details.address.country}}, {{seller_details.address.zip}}</li>
+                                                        </div>
+                                                    </ol>
+                                                    <div fxLayout="row" fxLayoutAlign="space-between">
+                                                          
+                                                                <p> <strong>Seller Signature:</strong> </p>
+                                                                
+                                                          
+                                                                <p><strong>Buyer Signature:</strong></p>
+                                                                
+                                                            
+                                                        </div>
+                                                    <div fxLayout="row" fxLayoutAlign="space-between" >
+                                                       <div>
+                                                          
+                                                            <p class="pr-2">Digitally Signed Using PUBLIC KEY: <br/>{{contract.seller[0].eth}}</p>
+                                                       </div>
+                                                       <div>
+                                                            <p style="text-align: right;">Digitally Signed Using PUBLIC KEY: <br/> {{contract.buyer[0].eth}}</p>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </mat-dialog-content>
+                            </div>
+
+                        </div>
+                    </div>
+                </swiper>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="contracts_show==='There is no Contract made for this property,'">
+    <div>
+        <mat-card-title>Contract Details</mat-card-title>
+        <mat-dialog-content class="mat-typography">
+            <form>
+                <mat-label class="display-block">
+                    <p>{{contracts_show}}
+                        <br> You can see Contract only once the property is sold</p>
+                </mat-label>
+                <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
+                    <button fxFlex="40" mat-raised-button fxFlex color="warn" (click)="onNoClick()">Close</button>
+                </div>
+            </form>
+        </mat-dialog-content>
+    </div>
+</div>

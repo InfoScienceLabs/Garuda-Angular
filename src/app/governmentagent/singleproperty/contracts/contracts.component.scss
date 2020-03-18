@@ -1,0 +1,67 @@
+@import '../../../../scss/certificate.scss';
+.main {
+    background: #ffffff;
+    overflow: auto;
+}
+
+.scrollbar {
+    float: left;
+    overflow-y: scroll;
+}
+
+#style-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+#style-3::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122, 153, 217)), color-stop(0.72, rgb(73, 125, 189)), color-stop(0.86, rgb(28, 58, 148)));
+}
+
+.text-center {
+    text-align: center;
+}
+
+ol li {
+    padding: 12px 0;
+    font-size: 10pt;
+    text-align: justify;
+}
+
+ul li,
+ol li {
+    list-style: decimal;
+    text-align: justify;
+}
+
+ol.small {
+    list-style-type: lower-alpha;
+}
+
+ol ol {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+p {
+    color: #000000;
+    font-size: 10pt;
+    text-align: justify;
+}

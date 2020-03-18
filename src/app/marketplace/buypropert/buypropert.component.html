@@ -1,0 +1,123 @@
+<mat-horizontal-stepper class="mat-elevation-z3" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <div fxFlex fxLayoutAlign="start center" class="m-t-15">
+            <div fxFlex.gt-sm='100'>
+                <mat-card>
+                    <mat-card-title>Property Details</mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="firstFormGroup">
+                            <div fxLayout="column wrap" fxLayoutGap="20px">
+                                <ng-template matStepLabel>Property Details</ng-template>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Property Name</mat-label>
+                                    <input matInput placeholder="Property Name">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Property Value</mat-label>
+                                    <input matInput placeholder="Property Value">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Tax</mat-label>
+                                    <input matInput placeholder="Tax">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Property Type</mat-label>
+                                    <input matInput placeholder="Property Type">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Total Value</mat-label>
+                                    <input matInput placeholder="Total Value">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row wrap" fxLayoutAlign="end center" class="m-t-15">
+                                <button mat-raised-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <div fxFlex fxLayoutAlign="start center" class="m-t-15">
+            <div fxFlex.gt-sm='100'>
+                <mat-card>
+                    <mat-card-title>Buyer Details</mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="secondFormGroup">
+                            <div fxLayout="column wrap" fxLayoutGap="20px">
+                                <ng-template matStepLabel>Buyer Details</ng-template>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Buyer Name</mat-label>
+                                    <input matInput placeholder="Buyer Name">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Buyer ID</mat-label>
+                                    <input matInput placeholder="Buyer ID">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Wallet Balence</mat-label>
+                                    <input matInput placeholder="Wallet Balence">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Wallet ID</mat-label>
+                                    <input matInput placeholder="Wallet ID">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row wrap" fxLayoutAlign="end center" class="m-t-15" fxLayoutGap="30px">
+                                <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                                <button mat-raised-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <div fxFlex fxLayoutAlign="start center" class="m-t-15">
+            <div fxFlex.gt-sm='100'>
+                <mat-card>
+                    <mat-card-title>Seller Details</mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="thirdFormGroup">
+                            <div fxLayout="column wrap" fxLayoutGap="20px">
+                                <ng-template matStepLabel>Seller Details</ng-template>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Seller Name</mat-label>
+                                    <input matInput placeholder="Seller Name">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Seller ID</mat-label>
+                                    <input matInput placeholder="Seller ID">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Seller Phone</mat-label>
+                                    <input matInput placeholder="Seller Phone">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex>
+                                    <mat-label>Seller Email</mat-label>
+                                    <input matInput placeholder="Seller Email">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row wrap" fxLayoutAlign="end center" class="m-t-15" fxLayoutGap="30px">
+                                <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                                <button mat-raised-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" class="m-t-15">
+            <h2>You are now done.</h2>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" class="m-t-15" fxLayoutGap="30px">
+            <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+            <button mat-raised-button color="accent" (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

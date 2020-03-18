@@ -1,0 +1,181 @@
+<div class="p-0">
+    <div class="display-block">
+        <div id="page-banner-area" class="page-banner">
+            <div class="page-banner-title">
+                <div class="text-center">
+                    <span class="crumbs-spacer"> <a [routerLink]="[ '/']"><i class="material-icons">home</i>Home</a></span>
+                    <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                    <span class="crumbs-spacer"><a [routerLink]="[ '/user/property']">My Property</a></span>
+                    <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+                    <span class="crumbs-spacer"><a [routerLink]="[ '/user/property/create']">Submit Property</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="host-display">
+        <form #propertyForm="ngForm">
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
+                <div fxFlex="100" class="m-t-15">
+
+                    <div class="pro-title-icons" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <h1 class="desc-title">Submit Property </h1>
+                        </div>
+                        <div class="fav cp" fxLayout="row" fxLayoutGap="20px" matTooltip="Document" (click)="view_certificate()" *ngIf="!isNew">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <div mat-card-avatar class="status-property create" [ngClass]="{'list':property.status=='4', 'sold': property.status=='5', 'approve': property.status=='2','reject': property.status=='3', 'review': property.status=='1'}"></div>
+                                <mat-card-title class="side-peoperty">{{this.status_msg_dict[property.status]}} </mat-card-title>
+                            </div>
+                            <a>
+                                <mat-icon class="icon">assignment</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                    <mat-card class="mat-elevation-z3">
+                        <mat-card-content>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Property Name" name="name" [(ngModel)]="property.name" #name="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <!-- <input matInput placeholder="Property Type" name="propertyType" [(ngModel)]="property.propertyType" #propertyType="ngModel" required> -->
+
+                                <mat-select class="form-control" placeholder="Choose Property Type" name="propertyType" [(ngModel)]="property.propertyType" #propertyType="ngModel" required>
+                                    <mat-option value="Residential">Residential</mat-option>
+                                    <mat-option value="Commercial"> Commercial</mat-option>
+                                    <mat-option value="Agricultural">Agricultural</mat-option>
+                                    <mat-option value="Others"> Others </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+
+
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Property Value" name="value" [(ngModel)]="property.value" #value="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <input matInput placeholder="Area (In Sqft)" name="area" [(ngModel)]="property.area" #area="ngModel" required>
+                            </mat-form-field>
+                            <mat-form-field class="display-block">
+                                <textarea matInput rows="4" placeholder="Property Details" (ngModelChange)="countingCharacters($event)" name="description" [(ngModel)]="property.description" #description="ngModel" required></textarea>
+                            </mat-form-field>
+
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="20px" class="m-t-15">
+                <div fxFlex="100">
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Owner Details</h1>
+                        <mat-card class="mat-elevation-z3">
+                            <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Owner Name" [(ngModel)]="owner.OwnerName" [readonly]="owner.OwnerName" name="OwnerName" #OwnerName="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <mat-select placeholder="Owner Type" [(ngModel)]="owner.type" name="type" #type="ngModel" (ngModelChange)="staticValueForStake(i,owner.type)">
+                                        <mat-option value="Sole propertiership">Sole propertiership</mat-option>
+                                        <mat-option value="CoOwn" [disabled]="true">CoOwn (Coming Soon)</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder="Stake (in %)" [readOnly]="disable_stake" name="stake" [(ngModel)]="owner.stake" #stake="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput [matDatepicker]="picker" [max]="current_date" name="buyDate" [(ngModel)]="owner.buyDate" #buyDate="ngModel" placeholder="Listed Date" (click)="picker.open()">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker [disabled]="false" #picker></mat-datepicker>
+                                </mat-form-field>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Address Details</h1>
+                        <mat-card class="mat-elevation-z3">
+                            <mat-card-content *ngFor="let owner of property.owner; let i = index" [ngModelGroup]="'owner'+i">
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" Street" [(ngModel)]="property.address.street" name="street" #street="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" city" [(ngModel)]="property.address.city" name="city" #city="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" State" [(ngModel)]="property.address.state" name="state" #state="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" Country" name="country" [(ngModel)]="property.address.country" #country="ngModel" required>
+                                </mat-form-field>
+                                <mat-form-field class="display-block">
+                                    <input matInput placeholder=" ZIP" name="zip" [(ngModel)]="property.address.zip" #zip="ngModel" required>
+                                </mat-form-field>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Images</h1>
+                        <mat-card class="mat-elevation-z3">
+                            <div>
+                                <div fxFlex.gt-sm='50'>
+                                    <mat-card-title>Images <small>(JPEG,JPG,PNG)</small></mat-card-title>
+                                </div>
+                                <div fxFlex.gt-sm='50' fxLayoutAlign="end center">
+                                    <input type="file" class="custom-file-input" accept="image/x-png,image/jpg,image/jpeg" (change)="processWebImage($event)" required>
+                                </div>
+                            </div>
+
+                            <mat-card-content>
+                                <div class='display-block-dropify'>
+                                    <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutAlign="start center">
+                                        <div *ngFor="let image of property.image; let i = index">
+                                            <img *ngIf="image" [src]="image" style="width: 100px; height: 100px; padding: 15px;" />
+                                            <span *ngIf="image" class="remove">
+                                                <mat-icon (click)="removeImage(i)">remove_circle</mat-icon>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                            <mat-progress-bar mode="indeterminate" *ngIf="loader"></mat-progress-bar>
+                        </mat-card>
+                    </div>
+                    <div class="display-block m-t-15">
+                        <h1 class="page-header">Documents</h1>
+                        <mat-card class="mat-elevation-z3">
+                            <div>
+                                <div fxFlex.gt-sm='50'>
+                                    <mat-card-title>Documents <small>(PDF,WORD)</small></mat-card-title>
+                                </div>
+                                <div fxFlex.gt-sm='50' fxLayoutAlign="end center">
+                                    <input type="file" accept=".pdf,.doc" class="custom-file-input" (change)="processWebDocs($event)" required>
+                                </div>
+                            </div>
+                            <mat-card-content>
+                                <div class='display-block-dropify'>
+                                    <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutAlign="start center">
+                                        <div *ngFor="let doc of property.docs; let d = index">
+                                            <img *ngIf="docimages" [src]="doc" style="width: 100px; height: 100px; padding: 15px;" />
+                                            <span *ngIf="docimages" class="remove">
+                                                <mat-icon (click)="removedocImage(d)">remove_circle</mat-icon>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                            <mat-progress-bar mode="indeterminate" *ngIf="load"></mat-progress-bar>
+
+                        </mat-card>
+                    </div>
+                    <div class="display-block py-3">
+                        <button mat-raised-button color="primary" (click)="addProperty()" *ngIf="isNew" [disabled]="!propertyForm.valid">Create
+                            Property</button>
+                        <button mat-raised-button color="accent" (click)="updateProperty()" *ngIf="!isNew" [disabled]="!propertyForm.valid">Submit
+                            Property</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

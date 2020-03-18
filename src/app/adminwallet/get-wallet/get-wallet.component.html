@@ -1,0 +1,23 @@
+<div fxLayout="row" class="m-t-16" fxLayout.xs="column" fxLayoutGap.xs="10" fxLayoutGap="20px">
+  <div fxFlex="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-title> Available Balance in Ethers : <b>{{balance}}</b> </mat-card-title>
+      <mat-card-content>
+
+        <form>
+
+          <mat-form-field class="display-block">
+            <input matInput type="password" placeholder="Enter password " [(ngModel)]="data.password" name="password" #password="ngModel"
+              required>
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
+            <button fxFlex="10" mat-raised-button fxFlex color="accent" (click)="getbalance()">Submit</button>
+
+            <button fxFlex="40" mat-raised-button fxFlex color="warn" (click)="onNoClick()">Cancel</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

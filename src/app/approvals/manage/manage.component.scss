@@ -1,0 +1,21 @@
+@import '../../../scss/marketplace.scss';
+@import '../../../scss/table.scss';
+.list {
+    background-image: url(../../../assets/images/avatars/list.png);
+}
+
+.sold {
+    background-image: url(../../../assets/images/avatars/sold.png);
+}
+
+.approve {
+    background-image: url(../../../assets/images/avatars/approved.png);
+}
+
+.reject {
+    background-image: url(../../../assets/images/avatars/reject.png);
+}
+
+.review {
+    background-image: url(../../../assets/images/avatars/review.png);
+}

@@ -1,0 +1,24 @@
+@import '../../../scss/marketplace.scss';
+#page-banner-area {
+    background: url(../../../assets/images/transaction.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.networkdialog {
+    .mat-dialog-container {
+        //background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-top: 5px solid #4064d7;
+    }
+    .mat-card-title {
+        color: #4064d7;
+    }
+}
+
+.color-green {
+    color: green;
+}
+
+.color-yellow {
+    color: rgb(253, 82, 15);
+}

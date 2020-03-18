@@ -1,0 +1,21 @@
+<div class="navigation-container">
+    <div class="navigation-scrollbar-container">
+        <perfect-scrollbar>
+            <ng-container *ngFor="let navigation of navigationModel">
+                <stbui-nav-collapse *ngIf="navigation.type == 'collapse' && navigation.role=='admin'" [item]="navigation"></stbui-nav-collapse>
+                <stbui-nav-item *ngIf="navigation.type=='item' && navigation.role=='admin'" [item]="navigation"></stbui-nav-item>
+            </ng-container>
+        </perfect-scrollbar>
+    </div>
+
+    <!-- <div class="navigation-footer">
+        <a matRipple>
+            <mat-icon>exit_to_app</mat-icon>
+            logout
+        </a> -->
+        <!-- <a matRipple href="https://github.com/stbui/angular-material-app/issues" target="blank">
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+        </a> -->
+    <!-- </div> -->
+</div>

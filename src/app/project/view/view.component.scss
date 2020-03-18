@@ -1,0 +1,8 @@
+@import '../../../scss/table.scss';
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.mat-icon {
+    cursor: pointer;
+}
